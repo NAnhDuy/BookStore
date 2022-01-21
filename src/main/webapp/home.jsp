@@ -16,6 +16,7 @@
 <c:import url="body.jsp"/>
 <!-- Footer -->
 <c:import url="footer.jsp"/>
+<!-- Footer -->
 </body>
 
 </html>
