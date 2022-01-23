@@ -30,7 +30,7 @@
         <div class="container-fluid">
 
             <!-- Brand -->
-            <a class="navbar-brand" href="https://courses.funix.edu.vn">
+            <a class="navbar-brand" href="home.jsp">
                 <i class="fas fa-book-open fa-3x" alt="mdb logo"></i>
             </a>
 
@@ -80,7 +80,7 @@
     <!-- Navbar -->
 
     <div class="jumbotron jumbotron-image color-grey-light"
-         style="background-image: url('https://images.unsplash.com/photo-1618365908648-e71bd5716cba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'); height: 400px;">
+         style="background-image: url('https://images.unsplash.com/photo-1553503995-b6aefccad354?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'); height: 400px;">
         <div class="mask rgba-black-strong d-flex align-items-center h-100">
             <div class="container text-center white-text py-5">
                 <h1 class="mb-0">Duy's Bookstore</h1>

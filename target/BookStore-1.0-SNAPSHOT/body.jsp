@@ -3,6 +3,7 @@
 <html>
 
 <head>
+    <jsp:useBean id="listb" class="dao.ListProductDAO" scope="request"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -54,11 +55,11 @@
                         <h5>Thể loại sách</h5>
 
                         <div class="text-muted small text-uppercase mb-5">
-                            <p class="mb-3"><a href="#!" class="card-link-secondary">Tiểu Thuyết</a></p>
                             <p class="mb-3"><a href="#!" class="card-link-secondary">Thiếu Nhi</a></p>
                             <p class="mb-3"><a href="#!" class="card-link-secondary">Manga - Light novel</a></p>
                             <p class="mb-3"><a href="#!" class="card-link-secondary">Kinh Tế</a></p>
                             <p class="mb-3"><a href="#!" class="card-link-secondary">Văn Học</a></p>
+                            <p class="mb-3"><a href="#!" class="card-link-secondary">Khoa Học Kỹ Thuật</a></p>
                             <p class="mb-3"><a href="#!" class="card-link-secondary">Nữ Công Gia Chánh</a></p>
                         </div>
 
@@ -88,11 +89,6 @@
 
                             <h6 class="font-weight-bold mb-3">Giá</h6>
 
-                            <%--                            <div class="form-check pl-0 mb-3">--%>
-                            <%--                                <input type="radio" class="form-check-input" id="under25" name="materialExampleRadios">--%>
-                            <%--                                <label class="form-check-label small text-uppercase card-link-secondary" for="under25">--%>
-                            <%--                                    0đ - 150,000đ</label>--%>
-                            <%--                            </div>--%>
                             <a href="#" class="form-check pl-0 mb-3" style="color: black">0đ - 150,000đ</a>
                             <a href="#" class="form-check pl-0 mb-3" style="color: black">150,000đ - 300,000đ</a>
                             <a href="#" class="form-check pl-0 mb-3" style="color: black">300,000đ - 500,000đ</a>
@@ -100,8 +96,6 @@
 
                         </section>
                         <!-- Section: Price -->
-
-
 
                     </section>
                     <!-- Section: Filters -->
@@ -145,9 +139,10 @@
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination pagination-circle justify-content-center float-md-right mb-0">
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
-                                    <li class="page-item active"><a class="page-link">1</a></li>
-                                    <li class="page-item"><a class="page-link">2</a></li>
-                                    <li class="page-item"><a class="page-link">3</a></li>
+                                    <c:forEach var="i" begin="1" end="6">
+                                        <li class="page-item"><a href="NumberPageController?index=${i}" class="page-link">
+                                                ${i}</a></li>
+                                    </c:forEach>
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
                                 </ul>
                             </nav>
@@ -163,7 +158,7 @@
                     <!-- Grid row -->
                     <div class="row">
 
-                        <c:forEach var="i" begin="1" end="6">
+                        <c:forEach items="${listb.listProduct}" var="i">
                             <!-- Grid column -->
                             <div class="col-md-4 mb-5">
 
@@ -172,11 +167,11 @@
 
                                     <div class="view zoom overlay rounded z-depth-2">
                                         <img class="img-fluid w-100"
-                                             src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg" alt="Sample">
-                                        <a href="#!">
+                                             src="${i.img}" alt="Sample">
+                                        <a href="#!"></a>
                                             <div class="mask">
                                                 <img class="img-fluid w-100"
-                                                     src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg">
+                                                     src="${i.img}">
                                                 <div class="mask rgba-black-slight"></div>
                                             </div>
                                         </a>
@@ -184,11 +179,8 @@
 
                                     <div class="text-center pt-4">
 
-                                        <h5>Black denim jacket</h5>
-                                        <p><span class="mr-1"><strong>$99.99</strong></span></p>
-                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                        <span>0 ratings & 0 reviews</span>
+                                        <h5>${i.name}</h5>
+                                        <p><span class="mr-1"><strong>${i.price_sale}đ</strong></span></p>
 
                                     </div>
 
@@ -214,9 +206,9 @@
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination pagination-circle justify-content-center float-md-right mb-0">
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
-                                    <li class="page-item active"><a class="page-link">1</a></li>
-                                    <li class="page-item"><a class="page-link">2</a></li>
-                                    <li class="page-item"><a class="page-link">3</a></li>
+                                    <c:forEach var="i" begin="1" end="6">
+                                        <li class="page-item"><a class="page-link">${i}</a></li>
+                                    </c:forEach>
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
                                 </ul>
                             </nav>
@@ -234,7 +226,7 @@
 
     </div>
 </main>
-
+<br><br><br>
 <!-- SCRIPTS -->
 <!-- JQuery -->
 <script src="js/jquery-3.4.1.min.js"></script>

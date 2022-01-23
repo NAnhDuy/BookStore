@@ -13,10 +13,10 @@
 <!-- Header -->
 <c:import url="header.jsp"/>
 <!-- Body -->
+<c:import url="sale.jsp"/>
 <c:import url="body.jsp"/>
 <!-- Footer -->
 <c:import url="footer.jsp"/>
-<!-- Footer -->
 </body>
 
 </html>
