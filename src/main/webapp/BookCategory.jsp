@@ -18,10 +18,9 @@
     <!-- Material Design Bootstrap Ecommerce -->
     <link rel="stylesheet" href="css/mdb.ecommerce.min.css">
 </head>
-<c:import url="header.jsp" />
-<c:import url="sale.jsp" />
 
 <body class="skin-light">
+<c:import url="header.jsp" />
 
 <main>
     <div class="container">
@@ -89,6 +88,12 @@
                         <section class="mb-4">
 
                             <h6 class="font-weight-bold mb-3">Giá</h6>
+
+                            <%--                            <div class="form-check pl-0 mb-3">--%>
+                            <%--                                <input type="radio" class="form-check-input" id="under25" name="materialExampleRadios">--%>
+                            <%--                                <label class="form-check-label small text-uppercase card-link-secondary" for="under25">--%>
+                            <%--                                    0đ - 150,000đ</label>--%>
+                            <%--                            </div>--%>
                             <a href="#" class="form-check pl-0 mb-3" style="color: black">0đ - 150,000đ</a>
                             <a href="#" class="form-check pl-0 mb-3" style="color: black">150,000đ - 300,000đ</a>
                             <a href="#" class="form-check pl-0 mb-3" style="color: black">300,000đ - 500,000đ</a>
@@ -96,6 +101,8 @@
 
                         </section>
                         <!-- Section: Price -->
+
+
 
                     </section>
                     <!-- Section: Filters -->
@@ -113,13 +120,17 @@
                 <section class="mb-3">
 
                     <div class="row d-flex justify-content-around align-items-center">
-                        <%--                        <div class="col-12 col-md-3 text-center text-md-left">--%>
-                        <%--                            <a href="#!" class="text-reset"><i class="fas fa-th-list fa-lg mr-1"></i></a>--%>
-                        <%--                            <a href="#!" class="text-reset"><i class="fas fa-th-large fa-lg"></i></a>--%>
-                        <%--                        </div>--%>
                         <div class="col-12 col-md-5">
                             <div class="d-flex flex-wrap">
                                 <div class="select-outline position-relative w-100">
+                                    <select class="mdb-select md-outline md-form" searchable="Search here..">
+                                        <option value="" disabled selected>Choose category</option>
+                                        <option value="1">Category 1</option>
+                                        <option value="2">Category 2</option>
+                                        <option value="3">Category 3</option>
+                                        <option value="4">Category 4</option>
+                                        <option value="5">Category 5</option>
+                                    </select>
                                     <label>Xu Hướng - </label>
                                     <label>Mới nhất - </label>
                                     <label>Bán chạy</label>
@@ -131,8 +142,8 @@
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination pagination-circle justify-content-center float-md-right mb-0">
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
-                                    <c:forEach var="i" begin="1" end="6">
-                                        <li class="page-item"><a href="NumberPageController?index=${i}" class="page-link">
+                                    <c:forEach var="i" begin="1" end="${endPage}">
+                                        <li class="page-item"><a href="BookCategoryController?cate=${category}&index=${i}" class="page-link">
                                                 ${i}</a></li>
                                     </c:forEach>
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
@@ -166,13 +177,13 @@
                                                  src="${i.img}">
                                             <div class="mask rgba-black-slight"></div>
                                         </div>
-<%--                                        </a>--%>
+                                        </a>
                                     </div>
 
                                     <div class="text-center pt-4">
 
                                         <h5><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}">${i.name}</a></h5>
-                                        <p><span class="mr-1"><strong>${i.price_sale}đ</strong></span></p>
+                                        <p><span class="mr-1"><strong>${i.price}đ - <strike>${i.price_sale}đ</strike></strong></span></p>
 
                                     </div>
 
@@ -198,8 +209,9 @@
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination pagination-circle justify-content-center float-md-right mb-0">
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
-                                    <c:forEach var="i" begin="1" end="6">
-                                        <li class="page-item"><a href="NumberPageController?index=${i}" class="page-link">${i}</a></li>
+                                    <c:forEach var="i" begin="1" end="${endPage}">
+                                        <li class="page-item"><a href="BookCategoryController?cate=${category}&index=${i}" class="page-link">
+                                                ${i}</a></li>
                                     </c:forEach>
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
                                 </ul>
@@ -219,7 +231,6 @@
     </div>
 </main>
 <br><br><br>
-
 <c:import url="footer.jsp" />
 <!-- SCRIPTS -->
 <!-- JQuery -->

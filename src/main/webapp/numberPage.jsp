@@ -56,12 +56,12 @@
                         <h5>Thể loại sách</h5>
 
                         <div class="text-muted small text-uppercase mb-5">
-                            <p class="mb-3"><a href="#!" class="card-link-secondary">Thiếu Nhi</a></p>
-                            <p class="mb-3"><a href="#!" class="card-link-secondary">Manga - Light novel</a></p>
-                            <p class="mb-3"><a href="#!" class="card-link-secondary">Kinh Tế</a></p>
-                            <p class="mb-3"><a href="#!" class="card-link-secondary">Văn Học</a></p>
-                            <p class="mb-3"><a href="#!" class="card-link-secondary">Khoa Học Kỹ Thuật</a></p>
-                            <p class="mb-3"><a href="#!" class="card-link-secondary">Nữ Công Gia Chánh</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=child&index=1" class="card-link-secondary">Thiếu Nhi</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=manga&index=1" class="card-link-secondary">Manga - Light novel</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=kinhte&index=1" class="card-link-secondary">Kinh Tế</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=vanhoc&index=1" class="card-link-secondary">Văn Học</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=khoahoc&index=1" class="card-link-secondary">Khoa Học Kỹ Thuật</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=nuconggiachanh&index=1" class="card-link-secondary">Nữ Công Gia Chánh</a></p>
                         </div>
 
                     </section>
@@ -166,16 +166,13 @@
                                                  src="${i.img}">
                                             <div class="mask rgba-black-slight"></div>
                                         </div>
-                                        </a>
+<%--                                        </a>--%>
                                     </div>
 
                                     <div class="text-center pt-4">
 
-                                        <h5>${i.name}</h5>
+                                        <h5><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}">${i.name}</a></h5>
                                         <p><span class="mr-1"><strong>${i.price_sale}đ</strong></span></p>
-                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                        <span>0 ratings & 0 reviews</span>
 
                                     </div>
 

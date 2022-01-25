@@ -55,12 +55,12 @@
                         <h5>Thể loại sách</h5>
 
                         <div class="text-muted small text-uppercase mb-5">
-                            <p class="mb-3"><a href="#!" class="card-link-secondary">Thiếu Nhi</a></p>
-                            <p class="mb-3"><a href="#!" class="card-link-secondary">Manga - Light novel</a></p>
-                            <p class="mb-3"><a href="#!" class="card-link-secondary">Kinh Tế</a></p>
-                            <p class="mb-3"><a href="#!" class="card-link-secondary">Văn Học</a></p>
-                            <p class="mb-3"><a href="#!" class="card-link-secondary">Khoa Học Kỹ Thuật</a></p>
-                            <p class="mb-3"><a href="#!" class="card-link-secondary">Nữ Công Gia Chánh</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=child&index=1" class="card-link-secondary">Thiếu Nhi</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=manga&index=1" class="card-link-secondary">Manga - Light novel</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=kinhte&index=1" class="card-link-secondary">Kinh Tế</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=vanhoc&index=1" class="card-link-secondary">Văn Học</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=khoahoc&index=1" class="card-link-secondary">Khoa Học Kỹ Thuật</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=nuconggiachanh&index=1" class="card-link-secondary">Nữ Công Gia Chánh</a></p>
                         </div>
 
                     </section>
@@ -140,7 +140,7 @@
                                 <ul class="pagination pagination-circle justify-content-center float-md-right mb-0">
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
                                     <c:forEach var="i" begin="1" end="6">
-                                        <li class="page-item"><a href="NumberPageController?index=${i}" class="page-link">
+                                        <li class="page-item"><a href="NumberPageController.html?index=${i}" class="page-link">
                                                 ${i}</a></li>
                                     </c:forEach>
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
@@ -166,20 +166,16 @@
                                 <div class="">
 
                                     <div class="view zoom overlay rounded z-depth-2">
-                                        <img class="img-fluid w-100"
-                                             src="${i.img}" alt="Sample">
-                                        <a href="#!"></a>
+                                            <img class="img-fluid w-100" src="${i.img}" alt="Sample">
                                             <div class="mask">
-                                                <img class="img-fluid w-100"
-                                                     src="${i.img}">
+                                                    <img class="img-fluid w-100" src="${i.img}">
                                                 <div class="mask rgba-black-slight"></div>
                                             </div>
-                                        </a>
                                     </div>
 
                                     <div class="text-center pt-4">
 
-                                        <h5>${i.name}</h5>
+                                        <h5><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}">${i.name}</a></h5>
                                         <p><span class="mr-1"><strong>${i.price_sale}đ</strong></span></p>
 
                                     </div>
@@ -207,7 +203,8 @@
                                 <ul class="pagination pagination-circle justify-content-center float-md-right mb-0">
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
                                     <c:forEach var="i" begin="1" end="6">
-                                        <li class="page-item"><a class="page-link">${i}</a></li>
+                                        <li class="page-item"><a href="NumberPageController.html?index=${i}" class="page-link">
+                                                ${i}</a></li>
                                     </c:forEach>
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
                                 </ul>
