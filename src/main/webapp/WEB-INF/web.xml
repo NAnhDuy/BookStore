@@ -24,7 +24,19 @@
         <servlet-name>SearchPriceController</servlet-name>
         <servlet-class>controller.SearchPriceController</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>SearchNameController</servlet-name>
+        <servlet-class>controller.SearchNameController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchSupplierController</servlet-name>
+        <servlet-class>controller.SearchSupplierController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchPriceSaleController</servlet-name>
+        <servlet-class>controller.SearchPriceSaleController</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>NumberPageController</servlet-name>
         <url-pattern>/NumberPageController.html</url-pattern>
@@ -40,6 +52,18 @@
     <servlet-mapping>
         <servlet-name>SearchPriceController</servlet-name>
         <url-pattern>/SearchPriceController.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchNameController</servlet-name>
+        <url-pattern>/SearchNameController.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchSupplierController</servlet-name>
+        <url-pattern>/SearchSupplierController.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchPriceSaleController</servlet-name>
+        <url-pattern>/SearchPriceSaleController.html</url-pattern>
     </servlet-mapping>
 
 </web-app>

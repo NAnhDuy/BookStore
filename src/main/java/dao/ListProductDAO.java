@@ -53,26 +53,6 @@ public class ListProductDAO {
         }
         return null;
     }
-    // get all ListProduct price_sale - use bean
-    public List<Product> getAllProductSale(){
-        try {
-            String query = "SELECT * FROM bookstoredb.products where product_price > product_price_sale";
-            Connection conn = new DBContext().getConnection();
-            PreparedStatement ps = conn.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            List<Product> listA = new ArrayList<>();
-            while (rs.next()) {
-                Product a = new Product(rs.getInt(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getInt(6),
-                        rs.getInt(7), rs.getString(8),  rs.getString(9));
-                listA.add(a);
-            }
-            return listA;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
     //method handle pagination
     public List<Product> pagingProduct(int index){
         try {
@@ -196,6 +176,178 @@ public class ListProductDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+    // count product_name
+    public int countName(String name) throws SQLException {
+        try {
+            String query = "SELECT COUNT(*) FROM bookstoredb.products WHERE product_name LIKE ?";
+            Connection conn = new DBContext().getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, "%" + name + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    // search by product_name
+    public List<Product> searchName(String name, int index) throws Exception {
+        try {
+            String query = "SELECT * FROM(SELECT *, row_number() over (order by product_id) as r \n" +
+                    "FROM bookstoredb.products WHERE product_name LIKE ?) as t\n" +
+                    "WHERE r between ?*9-8 and ?*9";
+            Connection conn = new DBContext().getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, "%" + name + "%");
+            ps.setInt(2, index);
+            ps.setInt(3, index);
+            ResultSet rs = ps.executeQuery();
+            List<Product> listSale = new ArrayList<>();
+            while (rs.next()) {
+                Product a = new Product(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getInt(6),
+                        rs.getInt(7), rs.getString(8), rs.getString(9));
+                listSale.add(a);
+            }
+            return listSale;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    // count product_supplier
+    public int countSupplier(String name) throws SQLException {
+        try {
+            String query = "SELECT COUNT(*) FROM bookstoredb.products WHERE product_supplier LIKE ?";
+            Connection conn = new DBContext().getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, "%" + name + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    // search by product_supplier
+    public List<Product> searchSupplier(String name, int index) throws Exception {
+        try {
+            String query = "SELECT * FROM(SELECT *, row_number() over (order by product_id) as r \n" +
+                    "FROM bookstoredb.products WHERE product_supplier LIKE ?) as t\n" +
+                    "WHERE r between ?*9-8 and ?*9";
+            Connection conn = new DBContext().getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, name);
+            ps.setInt(2, index);
+            ps.setInt(3, index);
+            ResultSet rs = ps.executeQuery();
+            List<Product> listSale = new ArrayList<>();
+            while (rs.next()) {
+                Product a = new Product(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getInt(6),
+                        rs.getInt(7), rs.getString(8), rs.getString(9));
+                listSale.add(a);
+            }
+            return listSale;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    // count product_price
+    public int countPrice(int min, int max) throws SQLException {
+        if(min != 500000) {
+            try {
+                String query = "SELECT COUNT(*) FROM bookstoredb.products WHERE product_price_sale > ? and  product_price_sale < ?";
+                Connection conn = new DBContext().getConnection();
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setInt(1, min);
+                ps.setInt(2, max);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                String query = "SELECT COUNT(*) FROM bookstoredb.products WHERE product_price_sale > ?";
+                Connection conn = new DBContext().getConnection();
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setInt(1, min);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        return 0;
+    }
+    // search by product_price
+    public List<Product> searchPrice(int min, int max, int index) throws Exception {
+        if(min != 500000) {
+            try {
+                String query = "SELECT * FROM(SELECT *, row_number() over (order by product_id) as r \n" +
+                        "FROM bookstoredb.products WHERE product_price_sale > ? and  product_price_sale < ?) as t\n" +
+                        "WHERE r between ?*9-8 and ?*9\n" +
+                        "order by product_price_sale";
+                Connection conn = new DBContext().getConnection();
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setInt(1, min);
+                ps.setInt(2, max);
+                ps.setInt(3, index);
+                ps.setInt(4, index);
+                ResultSet rs = ps.executeQuery();
+                List<Product> listSale = new ArrayList<>();
+                while (rs.next()) {
+                    Product a = new Product(rs.getInt(1), rs.getString(2), rs.getString(3),
+                            rs.getString(4), rs.getString(5), rs.getInt(6),
+                            rs.getInt(7), rs.getString(8), rs.getString(9));
+                    listSale.add(a);
+                }
+                return listSale;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                String query = "SELECT * FROM(SELECT *, row_number() over (order by product_id) as r \n" +
+                        "FROM bookstoredb.products WHERE product_price_sale > ?) as t\n" +
+                        "WHERE r between ?*9-8 and ?*9\n" +
+                        "order by product_price_sale";
+                Connection conn = new DBContext().getConnection();
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setInt(1, min);
+                ps.setInt(2, index);
+                ps.setInt(3, index);
+                ResultSet rs = ps.executeQuery();
+                List<Product> listSale = new ArrayList<>();
+                while (rs.next()) {
+                    Product a = new Product(rs.getInt(1), rs.getString(2), rs.getString(3),
+                            rs.getString(4), rs.getString(5), rs.getInt(6),
+                            rs.getInt(7), rs.getString(8), rs.getString(9));
+                    listSale.add(a);
+                }
+                return listSale;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }

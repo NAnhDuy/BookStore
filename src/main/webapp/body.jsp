@@ -40,8 +40,9 @@
                     <section class="mb-4">
 
                         <div class="md-form md-outline mt-0 d-flex justify-content-between align-items-center">
-                            <form>
-                                <input type="text" id="search12" class="form-control mb-0" placeholder="Search...">
+                            <form action="SearchNameController.html?" method="get">
+                                <input type="text" class="form-control mb-0" placeholder="Search..." name="search">
+                                <input type="hidden" name="index" value="1">
                                 <button type="submit" class="btn btn-flat btn-md px-3 waves-effect"><i class="fas fa-search fa-lg"></i></button>
                             </form>
                         </div>
@@ -74,12 +75,12 @@
 
                             <h6 class="font-weight-bold mb-3">Nhà Cung Cấp</h6>
 
-                            <a href="#" class="form-check pl-0 mb-3" style="color: black; font-size: medium">Nhà Xuất Bản Kim Đồng</a>
-                            <a href="#" class="form-check pl-0 mb-3" style="color: black; font-size: medium">NXB Trẻ</a>
-                            <a href="#" class="form-check pl-0 mb-3" style="color: black; font-size: medium">Alpha Books</a>
-                            <a href="#" class="form-check pl-0 mb-3" style="color: black; font-size: medium">Tân Việt</a>
-                            <a href="#" class="form-check pl-0 mb-3" style="color: black; font-size: medium">Đinh tị</a>
-                            <a href="#" class="form-check pl-0 mb-3" style="color: black; font-size: medium">Nhã Nam</a>
+                            <a href="SearchSupplierController.html?supplier=kimdong&index=1" class="form-check pl-0 mb-3" style="color: black; font-size: medium">Nhà Xuất Bản Kim Đồng</a>
+                            <a href="SearchSupplierController.html?supplier=tre&index=1" class="form-check pl-0 mb-3" style="color: black; font-size: medium">NXB Trẻ</a>
+                            <a href="SearchSupplierController.html?supplier=alpha&index=1" class="form-check pl-0 mb-3" style="color: black; font-size: medium">Alpha Books</a>
+                            <a href="SearchSupplierController.html?supplier=tanviet&index=1" class="form-check pl-0 mb-3" style="color: black; font-size: medium">Tân Việt</a>
+                            <a href="SearchSupplierController.html?supplier=dinhti&index=1" class="form-check pl-0 mb-3" style="color: black; font-size: medium">Đinh tị</a>
+                            <a href="SearchSupplierController.html?supplier=nhanam&index=1" class="form-check pl-0 mb-3" style="color: black; font-size: medium">Nhã Nam</a>
 
                         </section>
                         <!-- Section: Supplier -->
@@ -89,10 +90,10 @@
 
                             <h6 class="font-weight-bold mb-3">Giá</h6>
 
-                            <a href="#" class="form-check pl-0 mb-3" style="color: black">0đ - 150,000đ</a>
-                            <a href="#" class="form-check pl-0 mb-3" style="color: black">150,000đ - 300,000đ</a>
-                            <a href="#" class="form-check pl-0 mb-3" style="color: black">300,000đ - 500,000đ</a>
-                            <a href="#" class="form-check pl-0 mb-3" style="color: black">500,000đ TRỞ LÊN</a>
+                            <a href="SearchPriceController.html?price=0-150&index=1" class="form-check pl-0 mb-3" style="color: black">0đ - 150,000đ</a>
+                            <a href="SearchPriceController.html?price=150-300&index=1" class="form-check pl-0 mb-3" style="color: black">150,000đ - 300,000đ</a>
+                            <a href="SearchPriceController.html?price=300-500&index=1" class="form-check pl-0 mb-3" style="color: black">300,000đ - 500,000đ</a>
+                            <a href="SearchPriceController.html?price=500-max&index=1" class="form-check pl-0 mb-3" style="color: black">500,000đ TRỞ LÊN</a>
 
                         </section>
                         <!-- Section: Price -->
@@ -113,25 +114,12 @@
                 <section class="mb-3">
 
                     <div class="row d-flex justify-content-around align-items-center">
-                        <%--                        <div class="col-12 col-md-3 text-center text-md-left">--%>
-                        <%--                            <a href="#!" class="text-reset"><i class="fas fa-th-list fa-lg mr-1"></i></a>--%>
-                        <%--                            <a href="#!" class="text-reset"><i class="fas fa-th-large fa-lg"></i></a>--%>
-                        <%--                        </div>--%>
                         <div class="col-12 col-md-5">
                             <div class="d-flex flex-wrap">
                                 <div class="select-outline position-relative w-100">
-                                    <select class="mdb-select md-outline md-form" searchable="Search here..">
-                                        <option value="" disabled selected>Choose category</option>
-                                        <option value="1">Category 1</option>
-                                        <option value="2">Category 2</option>
-                                        <option value="3">Category 3</option>
-                                        <option value="4">Category 4</option>
-                                        <option value="5">Category 5</option>
-                                    </select>
                                     <label>Xu Hướng - </label>
                                     <label>Mới nhất - </label>
                                     <label>Bán chạy</label>
-                                    <button class="btn-save btn btn-primary btn-sm mt-2">Save</button>
                                 </div>
                             </div>
                         </div>

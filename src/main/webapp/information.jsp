@@ -67,39 +67,29 @@
                         <div class="product-price-discount"><span>${product.price}đ</span><span class="line-through">
                             ${product.price_sale}đ</span></div>
                     </div>
-                    <p>Tác giả: ${product.author}</p>
+                    <p><b>Tác giả: </b>${product.author}</p>
                     <div class="row">
                         <div class="col-md-6">
                             <h5 class="">Nhà Cung Cấp: </h5>
                             <p ><a href="#">${product.supplier}</a></p>
-<%--                            <label for="size">Size</label>--%>
-<%--                            <select id="size" name="size" class="form-control">--%>
-<%--                                <option>S</option>--%>
-<%--                                <option>M</option>--%>
-<%--                                <option>L</option>--%>
-<%--                                <option>XL</option>--%>
-<%--                            </select>--%>
                         </div>
                         <div class="col-md-6">
                             <h5 class="">Loại bìa: </h5>
                             <p >${product.cover_form}</p>
-<%--                            <label for="color">Color</label>--%>
-<%--                            <select id="color" name="color" class="form-control">--%>
-<%--                                <option>Blue</option>--%>
-<%--                                <option>Green</option>--%>
-<%--                                <option>Red</option>--%>
-<%--                            </select>--%>
                         </div>
                     </div>
                     <div class="product-count">
                         <h5>Số lượng</h5>
-<%--                        <label for="size">Quantity</label>--%>
                         <form action="#" class="display-flex">
                             <div class="qtyminus">-</div>
                             <input type="text" name="quantity" value="1" class="qty">
                             <div class="qtyplus">+</div>
+                            <br>
                         </form>
-                        <a href="#" class="round-black-btn">Thêm vào giỏ hàng</a>
+                        <form action="alo" class="display-flex">
+                            <input type="hidden" name="quantity" value="1" class="qty">
+                            <button type="submit" class="round-black-btn">Thêm vào giỏ hàng</button>
+                        </form>
                     </div>
                 </div>
             </div>

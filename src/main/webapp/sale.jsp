@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container mt-100">
-    <h5 style="color: black">ĐANG GIẢM GIÁ - <a href="SearchPriceController.html?index=1">tất cả</a></h5>
+    <h5 style="color: black">ĐANG GIẢM GIÁ - <a href="SearchPriceSaleController.html?index=1">tất cả</a></h5>
     <div class="row">
         <c:forEach items="${lists.listSale}" var="i" >
             <div class="col-md-4 col-sm-6">
