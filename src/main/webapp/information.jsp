@@ -21,9 +21,6 @@
 
 <div class="pd-wrap">
     <div class="container">
-<%--        <div class="heading-section">--%>
-<%--            <h2>Product Details</h2>--%>
-<%--        </div>--%>
         <div class="row">
             <div class="col-md-6">
                 <div id="slider" class="owl-carousel product-slider">
