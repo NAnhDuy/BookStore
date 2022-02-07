@@ -36,6 +36,14 @@
         <servlet-name>SearchPriceSaleController</servlet-name>
         <servlet-class>controller.SearchPriceSaleController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>controller.CartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderController</servlet-name>
+        <servlet-class>controller.OrderController</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>NumberPageController</servlet-name>
@@ -64,6 +72,14 @@
     <servlet-mapping>
         <servlet-name>SearchPriceSaleController</servlet-name>
         <url-pattern>/SearchPriceSaleController.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/CartController.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderController</servlet-name>
+        <url-pattern>/OrderController.html</url-pattern>
     </servlet-mapping>
 
 </web-app>

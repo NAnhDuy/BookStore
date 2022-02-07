@@ -24,7 +24,8 @@
                     <div class="card-body text-center">
                         <h4 class="card-title"><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}">${i.name}</a></h4>
                         <p class="text-muted"><strike>${i.price}đ</strike> - ${i.price_sale}đ</p>
-                        <a class="btn btn-outline-primary btn-sm" href="#" data-abc="true">Thêm vào giỏ hàng</a>
+                        <a class="btn btn-outline-primary btn-sm" href="CartController.html?id=${i.id}&action=add&number=1" data-abc="true">
+                            Thêm vào giỏ hàng</a>
                     </div>
                 </div>
             </div>

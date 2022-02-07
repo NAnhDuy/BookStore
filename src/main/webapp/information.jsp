@@ -83,8 +83,10 @@
                             <div class="qtyplus">+</div>
                             <br>
                         </form>
-                        <form action="alo" class="display-flex">
-                            <input type="hidden" name="quantity" value="1" class="qty">
+                        <form action="CartController.html" class="display-flex">
+                            <input type="hidden" name="id" value="${product.id}">
+                            <input type="hidden" name="action" value="add">
+                            <input type="hidden" name="number" value="1" class="qty">
                             <button type="submit" class="round-black-btn">Thêm vào giỏ hàng</button>
                         </form>
                     </div>

@@ -124,14 +124,14 @@ public class ListProductDAO {
             ps.setInt(2, index);
             ps.setInt(3, index);
             ResultSet rs = ps.executeQuery();
-            List<Product> list = new ArrayList<>();
+            List<Product> listC = new ArrayList<>();
             while (rs.next()) {
                 Product a = new Product(rs.getInt(1), rs.getString(2), rs.getString(3),
                         rs.getString(4), rs.getString(5), rs.getInt(6),
                         rs.getInt(7), rs.getString(8), rs.getString(9));
-                list.add(a);
+                listC.add(a);
             }
-            return list;
+            return listC;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -347,6 +347,35 @@ public class ListProductDAO {
 
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+        return null;
+    }
+    //method get List product by ID
+    public Product listById (int id, int number){
+        try {
+            String query = "SELECT * FROM bookstoredb.products WHERE product_id like ?";
+            Connection conn = new DBContext().getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            List<Product> listI = new ArrayList<>();
+            while (rs.next()) {
+                Product a = new Product(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getInt(6),
+                        rs.getInt(7), rs.getString(8), rs.getString(9), number);
+                return a;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public List<Product> remove(int id, List<Product> ls) {
+        for (Product x : ls) {
+            if (x.getId() == id) {
+                ls.remove(x);
+                return ls;
             }
         }
         return null;

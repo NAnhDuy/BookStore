@@ -18,7 +18,6 @@ public class BookCategoryController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
         try {
             String cate = request.getParameter("cate");
             String category ="";
@@ -37,17 +36,13 @@ public class BookCategoryController extends HttpServlet {
                     break;
 
             }
-            out.println(category);
             int index = Integer.parseInt(request.getParameter("index"));
-            out.println(index);
             ListProductDAO listProductDAO = new ListProductDAO();
             List<Product> ls = listProductDAO.searchTxt(category, index);
+            out.println(ls.get(0).getName());
             int count = listProductDAO.count(category);
             int size = 9;
             int endPage = count/size;
-//            if (endPage == 0 ) {
-//                endPage = 1;
-//            }
             if (count % size != 0) {
                 endPage++;
             }

@@ -10,6 +10,7 @@ public class Product {
     private int price_sale;
     private String img;
     private String category;
+    private int number;
 
     public Product() {}
 
@@ -24,6 +25,19 @@ public class Product {
         this.price_sale = price_sale;
         this.img = img;
         this.category = category;
+    }
+    public Product(int id, String name, String supplier, String author, String cover_form, int price, int price_sale, String img,
+                   String category, int number) {
+        this.id = id;
+        this.name = name;
+        this.supplier = supplier;
+        this.author = author;
+        this.cover_form = cover_form;
+        this.price = price;
+        this.price_sale = price_sale;
+        this.img = img;
+        this.category = category;
+        this.number = number;
     }
 
     public int getId() {
@@ -98,4 +112,11 @@ public class Product {
         this.category = category;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 }

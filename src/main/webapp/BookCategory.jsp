@@ -128,7 +128,7 @@
                                 <ul class="pagination pagination-circle justify-content-center float-md-right mb-0">
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
                                     <c:forEach var="i" begin="1" end="${endPage}">
-                                        <li class="page-item"><a href="BookCategoryController?cate=${category}&index=${i}" class="page-link">
+                                        <li class="page-item"><a href="BookCategoryController.html?cate=${category}&index=${i}" class="page-link">
                                                 ${i}</a></li>
                                     </c:forEach>
                                     <li class="page-item"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
