@@ -10,39 +10,47 @@
     
     <servlet>
         <servlet-name>NumberPageController</servlet-name>
-        <servlet-class>controller.NumberPageController</servlet-class>
+        <servlet-class>controllers.page.NumberPageController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>InformationProductController</servlet-name>
-        <servlet-class>controller.InformationProductController</servlet-class>
+        <servlet-class>controllers.page.InformationProductController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>BookCategoryController</servlet-name>
-        <servlet-class>controller.BookCategoryController</servlet-class>
+        <servlet-class>controllers.page.BookCategoryController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchPriceController</servlet-name>
-        <servlet-class>controller.SearchPriceController</servlet-class>
+        <servlet-class>controllers.page.SearchPriceController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchNameController</servlet-name>
-        <servlet-class>controller.SearchNameController</servlet-class>
+        <servlet-class>controllers.page.SearchNameController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchSupplierController</servlet-name>
-        <servlet-class>controller.SearchSupplierController</servlet-class>
+        <servlet-class>controllers.page.SearchSupplierController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchPriceSaleController</servlet-name>
-        <servlet-class>controller.SearchPriceSaleController</servlet-class>
+        <servlet-class>controllers.page.SearchPriceSaleController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CartController</servlet-name>
-        <servlet-class>controller.CartController</servlet-class>
+        <servlet-class>controllers.cart.CartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>OrderController</servlet-name>
-        <servlet-class>controller.OrderController</servlet-class>
+        <servlet-class>controllers.cart.OrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PayController</servlet-name>
+        <servlet-class>controllers.cart.PayController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyCartController</servlet-name>
+        <servlet-class>controllers.cart.MyCartController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -80,6 +88,14 @@
     <servlet-mapping>
         <servlet-name>OrderController</servlet-name>
         <url-pattern>/OrderController.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PayController</servlet-name>
+        <url-pattern>/PayController.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyCartController</servlet-name>
+        <url-pattern>/MyCartController.html</url-pattern>
     </servlet-mapping>
 
 </web-app>

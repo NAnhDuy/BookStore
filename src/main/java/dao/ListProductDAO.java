@@ -31,6 +31,7 @@ public class ListProductDAO {
         }
         return null;
     }
+
     // get 3 Product price_sale - use bean
     public List<Product> getListSale(){
         try {
@@ -53,6 +54,7 @@ public class ListProductDAO {
         }
         return null;
     }
+
     //method handle pagination
     public List<Product> pagingProduct(int index){
         try {
@@ -75,13 +77,14 @@ public class ListProductDAO {
         }
         return null;
     }
+
     // method get Product Information by product_id
-    public Product getProduct(String id) throws Exception {
+    public Product getProduct(int id) throws Exception {
         try {
             String query = "SELECT * FROM bookstoredb.products WHERE product_id LIKE ?";
             Connection conn = new DBContext().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Product a = new Product(rs.getInt(1), rs.getString(2), rs.getString(3),
@@ -95,8 +98,9 @@ public class ListProductDAO {
         }
         return null;
     }
+
     // count product_Category
-    public int count(String txt) throws SQLException {
+    public int countCategory(String txt) throws SQLException {
         try {
             String query = "SELECT COUNT(*) FROM bookstoredb.products\n" +
                     "WHERE product_Category like ?";
@@ -113,7 +117,7 @@ public class ListProductDAO {
         return 0;
     }
     // search by product_Category
-    public List<Product> searchTxt(String txt, int index ) throws Exception {
+    public List<Product> searchCategory(String txt, int index ) throws Exception {
         try {
             String query = "SELECT * FROM(SELECT *, row_number() over (order by product_id) as r \n" +
                     "FROM bookstoredb.products WHERE product_Category LIKE ?) as t\n" +
@@ -263,6 +267,7 @@ public class ListProductDAO {
         }
         return null;
     }
+
     // count product_price
     public int countPrice(int min, int max) throws SQLException {
         if(min != 500000) {
@@ -293,7 +298,6 @@ public class ListProductDAO {
                 e.printStackTrace();
             }
         }
-
 
         return 0;
     }
@@ -351,6 +355,7 @@ public class ListProductDAO {
         }
         return null;
     }
+
     //method get List product by ID
     public Product listById (int id, int number){
         try {
@@ -380,5 +385,8 @@ public class ListProductDAO {
         }
         return null;
     }
+
+    //method insert data into database
+
 
 }

@@ -57,7 +57,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="#!" class="nav-link navbar-link-2 waves-effect">
+                        <a href="MyCartController.html?id=1&action=a" class="nav-link navbar-link-2 waves-effect">
                             <i class="fas fa-shopping-cart pl-0"></i>
                         </a>
                     </li>

@@ -61,20 +61,19 @@
             <c:forEach items="${sessionScope.cart}" var="i">
             <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
                 <div class="mr-1"><img class="rounded" src="${i.img}" width="70"></div>
-                <div class="col-4 d-flex flex-column align-items-center product-details"><span class="font-weight-bold">${i.name}</span>
-                    <div class="d-flex flex-row product-desc">
-                        <div class="size mr-1"><span class="text-grey">  </span><span class="font-weight-bold">  </span></div>
-                        <div class="color"><span class="text-grey">  </span><span class="font-weight-bold">  </span></div>
-                    </div>
+                <div class="col-4 d-flex flex-column align-items-center product-details">
+                    <span class="font-weight-bold">${i.name}</span>
+
                 </div>
-                <div class="col-1 d-flex flex-row align-items-center qty">
-                    <h5 class="text-grey mt-1 mr-1 ml-1">${i.number}</h5><i class="fa fa-mail-reply"></i><i class="fa fa-mail-reply"></i>
+                <div class="col-1">
+                    <h5 class="text-grey"><i class="fa fa-android"></i>${i.number}</h5>
+                    <i class="fa fa-mail-reply"></i><i class="fa fa-mail-reply"></i>
                 </div>
-                <div>
-                    <h5 class="text-grey">${i.price_sale * i.number}đ</h5>
+                <div class="d-flex flex-row">
+                    <h5 class="mb-3 text-grey">${i.price_sale * i.number}đ</h5>
                 </div>
-                <div class="d-flex align-items-center"><a href="CartController.html?id=${i.id}&action=delete&number=${i.number}">
-                    <i class="fa fa-trash mb-1 text-danger"></i></a></div>
+                <div class="d-flex flex-row align-items-center"><a href="CartController.html?id=${i.id}&action=delete&number=${i.number}">
+                    <i class="fa fa-trash mb-3 text-danger"></i></a></div>
             </div>
             </c:forEach>
             <%-- product DAO --%>
