@@ -17,25 +17,26 @@ public class SearchSupplierController extends HttpServlet {
 
         try {
             String supplier = request.getParameter("supplier");
+            int supp = 0;
             switch (supplier) {
-                case "kimdong" : supplier = "Nhà Xuất Bản Kim Đồng";
+                case "kimdong" : supp = 9;
                 break;
-                case "tre" : supplier = "NXB Trẻ";
+                case "tre" : supp = 11;
                 break;
-                case "alpha" : supplier = "Alpha Books";
+                case "alpha" : supp = 2;
                 break;
-                case "tanviet" : supplier = "Tân Việt";
+                case "tanviet" : supp = 14;
                 break;
-                case "dinhti" : supplier = "Đinh Tị";
+                case "dinhti" : supp = 16;
                 break;
-                case "nhanam" : supplier = "Nhã Nam";
+                case "nhanam" : supp = 8;
                 break;
             }
 
             int index = Integer.parseInt(request.getParameter("index"));
             ListProductDAO listProductDAO = new ListProductDAO();
-            List<Product> ls = listProductDAO.searchSupplier(supplier, index);
-            int count = listProductDAO.countSupplier(supplier);
+            List<Product> ls = listProductDAO.searchSupplier(supp, index);
+            int count = listProductDAO.countSupplier(supp);
             int size = 9;
             int endPage = count/size;
             if (count % size != 0) {

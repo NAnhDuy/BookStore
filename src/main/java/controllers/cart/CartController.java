@@ -27,12 +27,21 @@ public class CartController extends HttpServlet {
                 if (session.getAttribute("cart") == null) {
                     session.setAttribute("cart", new ArrayList<>());
                 }
-                Product p = new ListProductDAO().listById(id, number);
-                List<Product> ls = (List<Product>) session.getAttribute("cart");
-                ls.add(p);
 
+                List<Product> ls = (List<Product>) session.getAttribute("cart");
+                Product p = new ListProductDAO().listById(id, number);
+                //check id products
+                for(int i=0; i<ls.size(); i++) {
+                    if(ls.get(i).getId() == id) {
+                        int a = number + ls.get(i).getNumber();
+                        ls.remove(i);
+                        p.setNumber(a);
+                    }
+                }
+                ls.add(p);
                 session.setAttribute("cart", ls);
                 request.getRequestDispatcher("cart.jsp").forward(request, response);
+
             } else if (action != null && action.equalsIgnoreCase("delete")) {
                 ListProductDAO listProductDAO = new ListProductDAO();
                 List<Product> lp = (List<Product>) session.getAttribute("cart");

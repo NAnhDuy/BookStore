@@ -14,7 +14,11 @@ public class ListProductDAO {
 
     public List<Product> getListProduct(){
         try {
-            String query = "SELECT * FROM bookstoredb.products where product_id BETWEEN 1 AND 9";
+            String query = "select p.product_id, p.product_name, s.supplier_name, p.product_author, co.cover_form_name, " +
+                    "p.product_price, p.product_price_sale, p.product_img_source, ca.category_name\n" +
+                    "from bookstoredb.products as p, bookstoredb.suppliers as s, bookstoredb.cover_forms as co, bookstoredb.categorys as ca\n" +
+                    "where p.supplier_id = s.supplier_id and p.cover_form_id = co.cover_form_id and p.category_id = ca.category_id\n" +
+                    "and product_id BETWEEN 1 AND 9";
             Connection conn = new DBContext().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -35,9 +39,13 @@ public class ListProductDAO {
     // get 3 Product price_sale - use bean
     public List<Product> getListSale(){
         try {
-            String query = "SELECT * FROM (SELECT *, (ROW_NUMBER() OVER (ORDER BY product_id)) as t \n" +
-                    "FROM bookstoredb.products WHERE product_price > product_price_sale) AS X\n" +
-                    "WHERE t between 8 AND 10";
+            String query = "select * from\n" +
+                    "(select p.product_id, p.product_name, s.supplier_name, p.product_author, co.cover_form_name, " +
+                    "p.product_price, p.product_price_sale, p.product_img_source, ca.category_name, (ROW_NUMBER() OVER (ORDER BY product_id)) as t\n" +
+                    "from bookstoredb.products as p, bookstoredb.suppliers as s, bookstoredb.cover_forms as co, bookstoredb.categorys as ca\n" +
+                    "where p.supplier_id = s.supplier_id and p.cover_form_id = co.cover_form_id and p.category_id = ca.category_id\n" +
+                    "and  p.product_price > p.product_price_sale) as x\n" +
+                    "where t between 8 and 10";
             Connection conn = new DBContext().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -58,7 +66,12 @@ public class ListProductDAO {
     //method handle pagination
     public List<Product> pagingProduct(int index){
         try {
-            String query = "SELECT * FROM bookstoredb.products WHERE product_id between ?*9-8 AND ?*9";
+            String query = "select p.product_id, p.product_name, s.supplier_name, p.product_author, co.cover_form_name, \n" +
+                    "p.product_price, p.product_price_sale, \n" +
+                    "p.product_img_source, ca.category_name, (ROW_NUMBER() OVER (ORDER BY product_id)) as t\n" +
+                    "from bookstoredb.products as p, bookstoredb.suppliers as s, bookstoredb.cover_forms as co, bookstoredb.categorys as ca\n" +
+                    "where p.supplier_id = s.supplier_id and p.cover_form_id = co.cover_form_id and p.category_id = ca.category_id\n" +
+                    "and p.product_id between ?*9-8 AND ?*9 ";
             Connection conn = new DBContext().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, index);
@@ -81,7 +94,12 @@ public class ListProductDAO {
     // method get Product Information by product_id
     public Product getProduct(int id) throws Exception {
         try {
-            String query = "SELECT * FROM bookstoredb.products WHERE product_id LIKE ?";
+            String query = "select p.product_id, p.product_name, s.supplier_name, p.product_author, co.cover_form_name, \n" +
+                    "p.product_price, p.product_price_sale, \n" +
+                    "p.product_img_source, ca.category_name, (ROW_NUMBER() OVER (ORDER BY product_id)) as t\n" +
+                    "from bookstoredb.products as p, bookstoredb.suppliers as s, bookstoredb.cover_forms as co, bookstoredb.categorys as ca\n" +
+                    "where p.supplier_id = s.supplier_id and p.cover_form_id = co.cover_form_id and p.category_id = ca.category_id\n" +
+                    "and p.product_id LIKE ?";
             Connection conn = new DBContext().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, id);
@@ -100,13 +118,12 @@ public class ListProductDAO {
     }
 
     // count product_Category
-    public int countCategory(String txt) throws SQLException {
+    public int countCategory(int cate) throws SQLException {
         try {
-            String query = "SELECT COUNT(*) FROM bookstoredb.products\n" +
-                    "WHERE product_Category like ?";
+            String query = "SELECT COUNT(*) FROM bookstoredb.products WHERE category_id = ?";
             Connection conn = new DBContext().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, "%" + txt + "%");
+            ps.setInt(1, cate);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
@@ -117,14 +134,18 @@ public class ListProductDAO {
         return 0;
     }
     // search by product_Category
-    public List<Product> searchCategory(String txt, int index ) throws Exception {
+    public List<Product> searchCategory(int cate, int index ) throws Exception {
         try {
-            String query = "SELECT * FROM(SELECT *, row_number() over (order by product_id) as r \n" +
-                    "FROM bookstoredb.products WHERE product_Category LIKE ?) as t\n" +
-                    "WHERE r between ?*9-8 and ?*9";
+            String query = "select * from (select p.product_id, p.product_name, s.supplier_name, p.product_author, co.cover_form_name, \n" +
+                    "p.product_price, p.product_price_sale, \n" +
+                    "p.product_img_source, ca.category_name, (ROW_NUMBER() OVER (ORDER BY p.product_id)) as r\n" +
+                    "from bookstoredb.products as p, bookstoredb.suppliers as s, bookstoredb.cover_forms as co, bookstoredb.categorys as ca\n" +
+                    "where p.supplier_id = s.supplier_id and p.cover_form_id = co.cover_form_id and p.category_id = ca.category_id\n" +
+                    "and p.category_id = ?) as x\n" +
+                    "where r between ?*9-8 and ?*9";
             Connection conn = new DBContext().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, "%" + txt + "%");
+            ps.setInt(1, cate);
             ps.setInt(2, index);
             ps.setInt(3, index);
             ResultSet rs = ps.executeQuery();
@@ -161,9 +182,13 @@ public class ListProductDAO {
     // search by product_price > product_price_sale
     public List<Product> searchSale(int index ) throws Exception {
         try {
-            String query = "SELECT * FROM(SELECT *, row_number() over (order by product_id) as r \n" +
-                    "FROM bookstoredb.products WHERE product_price > product_price_sale) as t\n" +
-                    "WHERE r between ?*9-8 and ?*9";
+            String query = "select * from (select p.product_id, p.product_name, s.supplier_name, p.product_author, co.cover_form_name, \n" +
+                    "p.product_price, p.product_price_sale, \n" +
+                    "p.product_img_source, ca.category_name, (ROW_NUMBER() OVER (ORDER BY p.product_id)) as r\n" +
+                    "from bookstoredb.products as p, bookstoredb.suppliers as s, bookstoredb.cover_forms as co, bookstoredb.categorys as ca\n" +
+                    "where p.supplier_id = s.supplier_id and p.cover_form_id = co.cover_form_id and p.category_id = ca.category_id\n" +
+                    "and p.product_price > p.product_price_sale) as x\n" +
+                    "where r between ?*9-8 and ?*9";
             Connection conn = new DBContext().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, index);
@@ -202,9 +227,13 @@ public class ListProductDAO {
     // search by product_name
     public List<Product> searchName(String name, int index) throws Exception {
         try {
-            String query = "SELECT * FROM(SELECT *, row_number() over (order by product_id) as r \n" +
-                    "FROM bookstoredb.products WHERE product_name LIKE ?) as t\n" +
-                    "WHERE r between ?*9-8 and ?*9";
+            String query = "select * from (select p.product_id, p.product_name, s.supplier_name, p.product_author, co.cover_form_name, \n" +
+                    "p.product_price, p.product_price_sale, \n" +
+                    "p.product_img_source, ca.category_name, (ROW_NUMBER() OVER (ORDER BY p.product_id)) as r\n" +
+                    "from bookstoredb.products as p, bookstoredb.suppliers as s, bookstoredb.cover_forms as co, bookstoredb.categorys as ca\n" +
+                    "where p.supplier_id = s.supplier_id and p.cover_form_id = co.cover_form_id and p.category_id = ca.category_id\n" +
+                    "and product_name LIKE ?) as x\n" +
+                    "where r between ?*9-8 and ?*9";
             Connection conn = new DBContext().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, "%" + name + "%");
@@ -226,12 +255,12 @@ public class ListProductDAO {
         return null;
     }
     // count product_supplier
-    public int countSupplier(String name) throws SQLException {
+    public int countSupplier(int supp) throws SQLException {
         try {
-            String query = "SELECT COUNT(*) FROM bookstoredb.products WHERE product_supplier LIKE ?";
+            String query = "SELECT COUNT(*) FROM bookstoredb.products WHERE supplier_id = ?";
             Connection conn = new DBContext().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, "%" + name + "%");
+            ps.setInt(1, supp);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
@@ -242,14 +271,18 @@ public class ListProductDAO {
         return 0;
     }
     // search by product_supplier
-    public List<Product> searchSupplier(String name, int index) throws Exception {
+    public List<Product> searchSupplier(int supp, int index) throws Exception {
         try {
-            String query = "SELECT * FROM(SELECT *, row_number() over (order by product_id) as r \n" +
-                    "FROM bookstoredb.products WHERE product_supplier LIKE ?) as t\n" +
-                    "WHERE r between ?*9-8 and ?*9";
+            String query = "select * from (select p.product_id, p.product_name, s.supplier_name, p.product_author, co.cover_form_name, \n" +
+                    "p.product_price, p.product_price_sale, \n" +
+                    "p.product_img_source, ca.category_name, (ROW_NUMBER() OVER (ORDER BY p.product_id)) as r\n" +
+                    "from bookstoredb.products as p, bookstoredb.suppliers as s, bookstoredb.cover_forms as co, bookstoredb.categorys as ca\n" +
+                    "where p.supplier_id = s.supplier_id and p.cover_form_id = co.cover_form_id and p.category_id = ca.category_id\n" +
+                    "and s.supplier_id = ?) as x\n" +
+                    "where r between ?*9-8 and ?*9";
             Connection conn = new DBContext().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, name);
+            ps.setInt(1, supp);
             ps.setInt(2, index);
             ps.setInt(3, index);
             ResultSet rs = ps.executeQuery();
@@ -305,9 +338,13 @@ public class ListProductDAO {
     public List<Product> searchPrice(int min, int max, int index) throws Exception {
         if(min != 500000) {
             try {
-                String query = "SELECT * FROM(SELECT *, row_number() over (order by product_id) as r \n" +
-                        "FROM bookstoredb.products WHERE product_price_sale > ? and  product_price_sale < ?) as t\n" +
-                        "WHERE r between ?*9-8 and ?*9\n" +
+                String query = "select * from (select p.product_id, p.product_name, s.supplier_name, p.product_author, co.cover_form_name, \n" +
+                        "p.product_price, p.product_price_sale, \n" +
+                        "p.product_img_source, ca.category_name, (ROW_NUMBER() OVER (ORDER BY p.product_id)) as r\n" +
+                        "from bookstoredb.products as p, bookstoredb.suppliers as s, bookstoredb.cover_forms as co, bookstoredb.categorys as ca\n" +
+                        "where p.supplier_id = s.supplier_id and p.cover_form_id = co.cover_form_id and p.category_id = ca.category_id\n" +
+                        "and p.product_price_sale > ? and  p.product_price_sale < ?) as x\n" +
+                        "where r between ?*9-8 and ?*9\n" +
                         "order by product_price_sale";
                 Connection conn = new DBContext().getConnection();
                 PreparedStatement ps = conn.prepareStatement(query);
@@ -330,9 +367,13 @@ public class ListProductDAO {
             }
         } else {
             try {
-                String query = "SELECT * FROM(SELECT *, row_number() over (order by product_id) as r \n" +
-                        "FROM bookstoredb.products WHERE product_price_sale > ?) as t\n" +
-                        "WHERE r between ?*9-8 and ?*9\n" +
+                String query = "select * from (select p.product_id, p.product_name, s.supplier_name, p.product_author, co.cover_form_name, \n" +
+                        "p.product_price, p.product_price_sale, \n" +
+                        "p.product_img_source, ca.category_name, (ROW_NUMBER() OVER (ORDER BY p.product_id)) as r\n" +
+                        "from bookstoredb.products as p, bookstoredb.suppliers as s, bookstoredb.cover_forms as co, bookstoredb.categorys as ca\n" +
+                        "where p.supplier_id = s.supplier_id and p.cover_form_id = co.cover_form_id and p.category_id = ca.category_id\n" +
+                        "and p.product_price_sale > ? ) as x\n" +
+                        "where r between ?*9-8 and ?*9\n" +
                         "order by product_price_sale";
                 Connection conn = new DBContext().getConnection();
                 PreparedStatement ps = conn.prepareStatement(query);
@@ -359,7 +400,12 @@ public class ListProductDAO {
     //method get List product by ID
     public Product listById (int id, int number){
         try {
-            String query = "SELECT * FROM bookstoredb.products WHERE product_id like ?";
+            String query = "select p.product_id, p.product_name, s.supplier_name, p.product_author, co.cover_form_name, \n" +
+                    "p.product_price, p.product_price_sale, \n" +
+                    "p.product_img_source, ca.category_name\n" +
+                    "from bookstoredb.products as p, bookstoredb.suppliers as s, bookstoredb.cover_forms as co, bookstoredb.categorys as ca\n" +
+                    "where p.supplier_id = s.supplier_id and p.cover_form_id = co.cover_form_id and p.category_id = ca.category_id\n" +
+                    "and p.product_id like ?";
             Connection conn = new DBContext().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, id);
@@ -386,7 +432,6 @@ public class ListProductDAO {
         return null;
     }
 
-    //method insert data into database
 
 
 }

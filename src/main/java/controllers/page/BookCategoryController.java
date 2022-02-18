@@ -20,19 +20,19 @@ public class BookCategoryController extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             String cate = request.getParameter("cate");
-            String category ="";
+            int category = 0;
             switch (cate) {
-                case "child": category = "Thiếu Nhi";
+                case "child": category = 5;
                     break;
-                case "manga": category = "MANGA - LIGHT NOVEL";
+                case "manga": category = 3;
                     break;
-                case "kinhte": category = "Kinh Tế";
+                case "kinhte": category = 2;
                     break;
-                case "vanhoc": category = "Văn Học";
+                case "vanhoc": category = 6;
                     break;
-                case "khoahoc": category = "khoa học kỹ thuật";
+                case "khoahoc": category = 1;
                     break;
-                case "nuconggiachanh": category = "Nữ Công Gia Chánh";
+                case "nuconggiachanh": category = 4;
                     break;
 
             }

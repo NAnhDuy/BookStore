@@ -31,19 +31,6 @@ public class OrdersDAO {
         } catch (Exception e){
             e.printStackTrace();
         }
-//        try {
-//            int a = c.getItems().size() - 1 ;
-//            String query2 = "insert into shoppingdb.orders_detail(product_id, amount_product, price_product) values(?,?,?);";
-//            Connection conn = new DBContext().getConnection();
-//            PreparedStatement ps = conn.prepareStatement(query2);
-//            ps.setInt(1, c.getItems().get(a).getId());
-//            ps.setInt(2, 1);
-//            ps.setFloat(3, c.getItems().get(a).getPrice());
-//            ps.executeUpdate();
-//        } catch (Exception e){
-//            e.printStackTrace();
-//        }
-
 
     }
 }

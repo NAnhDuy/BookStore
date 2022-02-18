@@ -52,6 +52,14 @@
         <servlet-name>MyCartController</servlet-name>
         <servlet-class>controllers.cart.MyCartController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controllers.account.LoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SignInController</servlet-name>
+        <servlet-class>controllers.account.SignInController</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>NumberPageController</servlet-name>
@@ -96,6 +104,14 @@
     <servlet-mapping>
         <servlet-name>MyCartController</servlet-name>
         <url-pattern>/MyCartController.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/LoginController.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignInController</servlet-name>
+        <url-pattern>/SignInController.html</url-pattern>
     </servlet-mapping>
 
 </web-app>
