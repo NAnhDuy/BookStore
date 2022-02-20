@@ -19,7 +19,7 @@
     <!-- Material Design Bootstrap Ecommerce -->
     <link rel="stylesheet" href="css/mdb.ecommerce.min.css">
 </head>
-<c:import url="header.jsp" />
+<c:import url="${sessionScope.header}" />
 <c:import url="sale.jsp" />
 
 <body class="skin-light">

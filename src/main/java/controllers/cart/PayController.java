@@ -1,6 +1,8 @@
 package controllers.cart;
 
+import dao.ListProductDAO;
 import dao.OrdersDAO;
+import model.Account;
 import model.Product;
 
 import javax.servlet.*;
@@ -19,21 +21,28 @@ public class PayController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html; charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
-        PrintWriter out = response.getWriter();
 
         try {
             OrdersDAO dao = new OrdersDAO();
             String name = request.getParameter("username");
             String address = request.getParameter("address");
             List<Product> list = (List<Product>) session.getAttribute("cart");
-            dao.insertOrder(list, name, address);
+            Account acc = (Account) session.getAttribute("user");
+            dao.insertOrder(list, acc, name, address);
 
+            //delete product from session cart
+            ListProductDAO listProductDAO = new ListProductDAO();
+            List<Product> listDel = listProductDAO.removeAll(list);
+
+            session.setAttribute("cart", listDel);
+            request.setAttribute("payMess", "Mua hàng thành công");
+            request.getRequestDispatcher("cart.jsp").forward(request,response);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
     }
 }

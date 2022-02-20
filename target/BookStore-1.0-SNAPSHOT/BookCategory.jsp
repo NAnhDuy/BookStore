@@ -20,7 +20,7 @@
 </head>
 
 <body class="skin-light">
-<c:import url="header.jsp" />
+<c:import url="${sessionScope.header}" />
 
 <main>
     <div class="container">

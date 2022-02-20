@@ -17,7 +17,7 @@
     <%--    <link rel="stylesheet" href="css/cart.css">--%>
 </head>
 <body>
-<c:import url="header.jsp" />
+<c:import url="${sessionScope.header}" />
 
 <div class=" container-fluid my-5 ">
     <div class="row justify-content-center ">

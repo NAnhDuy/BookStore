@@ -432,6 +432,11 @@ public class ListProductDAO {
         return null;
     }
 
+    public List<Product> removeAll(List<Product> ls) {
+        ls.removeAll(ls);
+        return ls;
+    }
+
 
 
 }

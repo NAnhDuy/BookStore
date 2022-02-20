@@ -17,7 +17,8 @@ public class BookCategoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession(true);
+
         try {
             String cate = request.getParameter("cate");
             int category = 0;
@@ -39,7 +40,6 @@ public class BookCategoryController extends HttpServlet {
             int index = Integer.parseInt(request.getParameter("index"));
             ListProductDAO listProductDAO = new ListProductDAO();
             List<Product> ls = listProductDAO.searchCategory(category, index);
-            out.println(ls.get(0).getName());
             int count = listProductDAO.countCategory(category);
             int size = 9;
             int endPage = count/size;
@@ -47,6 +47,15 @@ public class BookCategoryController extends HttpServlet {
                 endPage++;
             }
 
+            if(session.getAttribute("user") != null) {
+                session.setAttribute("header", "headerUser.jsp");
+                request.setAttribute("listP", ls);
+                request.setAttribute("endPage", endPage);
+                request.setAttribute("category", cate);
+                request.getRequestDispatcher("BookCategory.jsp").forward(request, response);
+            }
+
+            session.setAttribute("header", "header.jsp");
             request.setAttribute("listP", ls);
             request.setAttribute("endPage", endPage);
             request.setAttribute("category", cate);
@@ -54,7 +63,6 @@ public class BookCategoryController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
     }
 

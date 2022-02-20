@@ -39,6 +39,13 @@ public class CartController extends HttpServlet {
                     }
                 }
                 ls.add(p);
+
+                if(session.getAttribute("user") != null) {
+                    session.setAttribute("header", "headerUser.jsp");
+                    session.setAttribute("cart", ls);
+                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                }
+                session.setAttribute("header", "header.jsp");
                 session.setAttribute("cart", ls);
                 request.getRequestDispatcher("cart.jsp").forward(request, response);
 
@@ -47,6 +54,12 @@ public class CartController extends HttpServlet {
                 List<Product> lp = (List<Product>) session.getAttribute("cart");
                 List<Product> cart = listProductDAO.remove(id, lp);
 
+                if(session.getAttribute("user") != null) {
+                    session.setAttribute("header", "headerUser.jsp");
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                }
+                session.setAttribute("header", "header.jsp");
                 session.setAttribute("cart", cart);
                 request.getRequestDispatcher("cart.jsp").forward(request, response);
             }

@@ -13,8 +13,8 @@ import java.io.PrintWriter;
 public class SignInController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
 
         try {
@@ -59,7 +59,7 @@ public class SignInController extends HttpServlet {
             accountDAO.insertNewUser(acc);
 
             session.setAttribute("user", acc);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            request.getRequestDispatcher("homeUser.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

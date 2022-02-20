@@ -6,7 +6,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "OrderController", value = "/OrderController.html")
@@ -15,6 +14,11 @@ public class OrderController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
         HttpSession session = request.getSession(true);
+
+        if(session.getAttribute("user") == null) {
+            request.getRequestDispatcher("login.jsp").forward(request,response);
+            session.setAttribute("checkCart", "checkCart");
+        }
 
         int price = 0;
         int total = 0;

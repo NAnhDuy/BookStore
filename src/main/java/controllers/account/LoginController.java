@@ -40,9 +40,14 @@ public class LoginController extends HttpServlet {
                 request.setAttribute("error", error);
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-
+            //check cart
+            if(session.getAttribute("checkCart") != null) {
+                session.setAttribute("header", "header.jsp");
+                request.getRequestDispatcher("cart.jsp").forward(request, response);
+            }
             session.setAttribute("user", acc);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            session.setAttribute("header", "header.jsp");
+            request.getRequestDispatcher("homeUser.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

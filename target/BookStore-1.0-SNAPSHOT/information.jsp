@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/information.css">
 </head>
 <body>
-<c:import url="header.jsp" />
+<c:import url="${sessionScope.header}" />
 
 <div class="pd-wrap">
     <div class="container">

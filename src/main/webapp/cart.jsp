@@ -14,12 +14,14 @@
 <%--    <link rel="stylesheet" href="css/cart.css">--%>
 </head>
 <body>
-<c:import url="header.jsp" />
+<c:import url="${sessionScope.header}" />
 
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-8">
             <div class="p-2">
+                <h4><a href="home.jsp" style="color: #1b5e20; text-align: center">${payMess}</a></h4>
+                <br>
                 <h4 class="alert alert-success"><a href="home.jsp" style="color: #1b5e20">Tiếp tục mua hàng</a></h4>
             </div>
             <div class="p-2">

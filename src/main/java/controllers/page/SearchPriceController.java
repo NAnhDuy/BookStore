@@ -17,8 +17,7 @@ public class SearchPriceController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession(true);
 
         try {
             String p = request.getParameter("price");
@@ -43,6 +42,15 @@ public class SearchPriceController extends HttpServlet {
             if (count % size != 0) {
                 endPage++;
             }
+
+            if(session.getAttribute("user") != null) {
+                session.setAttribute("header", "headerUser.jsp");
+                request.setAttribute("listPrice", ls);
+                request.setAttribute("set", p);
+                request.setAttribute("endPage", endPage);
+                request.getRequestDispatcher("searchByPrice.jsp").forward(request, response);
+            }
+            session.setAttribute("header", "header.jsp");
             request.setAttribute("listPrice", ls);
             request.setAttribute("set", p);
             request.setAttribute("endPage", endPage);
