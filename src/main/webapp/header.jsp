@@ -62,9 +62,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#!" class="nav-link waves-effect">
-
-                        </a>
+                        <a href="#!" class="nav-link waves-effect"></a>
                     </li>
                     <li class="nav-item pl-2 mb-2 mb-md-0">
                         <a href="login.jsp" type="button"

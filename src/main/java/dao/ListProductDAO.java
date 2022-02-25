@@ -14,11 +14,13 @@ public class ListProductDAO {
 
     public List<Product> getListProduct(){
         try {
-            String query = "select p.product_id, p.product_name, s.supplier_name, p.product_author, co.cover_form_name, " +
-                    "p.product_price, p.product_price_sale, p.product_img_source, ca.category_name\n" +
+            String query = "select * from (select p.product_id, p.product_name, s.supplier_name, p.product_author, " +
+                    "co.cover_form_name, p.product_price, \n" +
+                    "p.product_price_sale, p.product_img_source, ca.category_name, (ROW_NUMBER() OVER (ORDER BY product_id desc)) as t\n" +
                     "from bookstoredb.products as p, bookstoredb.suppliers as s, bookstoredb.cover_forms as co, bookstoredb.categorys as ca\n" +
-                    "where p.supplier_id = s.supplier_id and p.cover_form_id = co.cover_form_id and p.category_id = ca.category_id\n" +
-                    "and product_id BETWEEN 1 AND 9";
+                    "where p.supplier_id = s.supplier_id and p.cover_form_id = co.cover_form_id and p.category_id = ca.category_id \n" +
+                    "order by product_id desc) as r\n" +
+                    "where t between 1 and 9";
             Connection conn = new DBContext().getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();

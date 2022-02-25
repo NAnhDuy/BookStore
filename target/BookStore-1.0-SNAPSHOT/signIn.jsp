@@ -18,11 +18,12 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="https://flyclipart.com/thumb2/login-935679.png" style="height: 20%; width: 20%; padding-top: 10px; padding-bottom: 30px" id="icon" alt="User Icon" />
+      <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQDhVbnLoLzbmK1VF2oSnpkO3jwH-Z3AFexQWBO2wDPtm9D2zJb"
+           style="height: 20%; width: 20%; padding-top: 10px; padding-bottom: 30px" id="icon" alt="User Icon" />
     </div>
 
     <!-- Login Form -->
-    <form action="SignInController.html" method="get">
+    <form action="SignInController.html" method="post">
       <span style="color: red">${error}</span>
       <input type="text" class="fadeIn second" name="name" placeholder="Nhập tên người dùng">
       <input type="text" class="fadeIn second" name="username" placeholder="Nhập Email">

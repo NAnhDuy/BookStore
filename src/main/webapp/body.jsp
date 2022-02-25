@@ -165,7 +165,7 @@
                                     <div class="text-center pt-4">
 
                                         <h5><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}">${i.name}</a></h5>
-                                        <p><span class="mr-1"><strong>${i.price_sale}đ</strong></span></p>
+                                        <p><span class="mr-1"><strong>${i.price}đ - <strike>${i.price_sale}đ</strike></strong></span></p>
 
                                     </div>
 

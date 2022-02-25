@@ -19,7 +19,8 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="https://flyclipart.com/thumb2/login-935679.png" style="height: 25%; width: 25%; padding-top: 30px; padding-bottom: 30px" id="icon" alt="User Icon" />
+      <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQDhVbnLoLzbmK1VF2oSnpkO3jwH-Z3AFexQWBO2wDPtm9D2zJb"
+           style="height: 20%; width: 20%; padding-top: 30px; padding-bottom: 30px" id="icon" alt="User Icon" />
     </div>
 
     <!-- Login Form -->

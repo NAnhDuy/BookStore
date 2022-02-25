@@ -2,6 +2,7 @@ package controllers.account;
 
 import dao.AccountDAO;
 import model.Account;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,6 +14,11 @@ import java.io.PrintWriter;
 public class SignInController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
@@ -49,26 +55,22 @@ public class SignInController extends HttpServlet {
                 request.setAttribute("error", error);
                 request.getRequestDispatcher("signIn.jsp").forward(request, response);
             }
+            if(usermail.matches(regexMail)&&password.length() > 5&&password.equals(password2)) {
+                String passMd5Hex = DigestUtils.md5Hex(password).toUpperCase();
 
-            AccountDAO accountDAO = new AccountDAO();
-            Account acc = new Account();
-            acc.setName(name);
-            acc.setUser(usermail);
-            acc.setPassword(password);
-            acc.setPhone(phone);
-            accountDAO.insertNewUser(acc);
+                AccountDAO accountDAO = new AccountDAO();
+                Account acc = new Account();
+                acc.setName(name);
+                acc.setUser(usermail);
+                acc.setPassword(passMd5Hex);
+                acc.setPhone(phone);
+                accountDAO.insertNewUser(acc);
+                session.setAttribute("user", acc);
+                request.getRequestDispatcher("homeUser.jsp").forward(request, response);
+            }
 
-            session.setAttribute("user", acc);
-            request.getRequestDispatcher("homeUser.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

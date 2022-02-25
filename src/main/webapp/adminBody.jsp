@@ -147,6 +147,35 @@
                     <!-- Grid row -->
                     <div class="row">
 
+                        <!-- Grid column -->
+                        <div class="col-md-4 mb-5">
+
+                            <!-- Card -->
+                            <div class="">
+
+                                <div class="view zoom overlay rounded z-depth-2">
+                                    <img class="img-fluid w-100" src="css/Untitled.png" alt="Sample">
+                                    <a href="#">
+                                    <div class="mask">
+                                        <img class="img-fluid w-100" src="css/Untitled.png">
+                                        <div class="mask rgba-black-slight"></div>
+                                    </div>
+                                    </a>
+                                </div>
+
+                                <div class="text-center pt-4">
+
+                                    <h5>Thêm sản phẩm mới</h5>
+                                    <p><span class="mr-1"><strong></strong></span></p>
+
+                                </div>
+
+                            </div>
+                            <!-- Card -->
+
+                        </div>
+                        <!-- Grid column -->
+
                         <c:forEach items="${listb.listProduct}" var="i">
                             <!-- Grid column -->
                             <div class="col-md-4 mb-5">
@@ -155,19 +184,26 @@
                                 <div class="">
 
                                     <div class="view zoom overlay rounded z-depth-2">
-                                            <img class="img-fluid w-100" src="${i.img}" alt="Sample">
-                                            <div class="mask">
-                                                    <img class="img-fluid w-100" src="${i.img}">
-                                                <div class="mask rgba-black-slight"></div>
-                                            </div>
+                                        <img class="img-fluid w-100" src="${i.img}" alt="Sample">
+                                        <div class="mask">
+                                            <img class="img-fluid w-100" src="${i.img}">
+                                            <div class="mask rgba-black-slight"></div>
+                                        </div>
                                     </div>
 
                                     <div class="text-center pt-4">
-
                                         <h5><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}">${i.name}</a></h5>
                                         <p><span class="mr-1"><strong>${i.price}đ - <strike>${i.price_sale}đ</strike></strong></span></p>
+                                    </div>
+
+                                    <div class="text-center">
+
+                                        <p><a href="#" class="mr-1"><i class="fa fa-edit text-danger"></i></a>&nbsp;
+                                            <a href="#" class="mr-1"><i class="fa fa-trash text-danger"></i></a></p>
 
                                     </div>
+
+
 
                                 </div>
                                 <!-- Card -->

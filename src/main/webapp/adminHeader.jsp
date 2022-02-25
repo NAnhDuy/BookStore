@@ -65,7 +65,11 @@
                         <a class="nav-link waves-effect">${sessionScope.user.user}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="user.jsp" class="nav-link waves-effect"><i class="fa fa-user"></i></a>
+                        <a href="user.jsp" class="nav-link waves-effect"><i class="fa fa-user"></i>&nbsp;</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="LogoutController.html?add=logout" type="button"
+                           class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light">Xem đơn hàng</a>
                     </li>
                     <li class="nav-item pl-2 mb-2 mb-md-0">
                         <a href="LogoutController.html?add=logout" type="button"

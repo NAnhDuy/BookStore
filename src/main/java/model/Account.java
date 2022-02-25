@@ -5,15 +5,25 @@ public class Account {
     private String password;
     private String name;
     private String phone;
+    private int decentralization_id;
 
     public Account() {
     }
 
-    public Account(String user, String password, String name, String phone) {
+    public Account(String user, String password, String name, String phone, int decentralization_id) {
         this.user = user;
         this.password = password;
         this.name = name;
         this.phone = phone;
+        this.decentralization_id = decentralization_id;
+    }
+
+    public int getDecentralization_id() {
+        return decentralization_id;
+    }
+
+    public void setDecentralization_id(int decentralization_id) {
+        this.decentralization_id = decentralization_id;
     }
 
     public String getUser() {
