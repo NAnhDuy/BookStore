@@ -73,14 +73,13 @@ public class LoginController extends HttpServlet {
             //check admin
             if(acc.getDecentralization_id() == 1) {
                 session.setAttribute("user", acc);
-                session.setAttribute("header", "headerUser.jsp");
+                session.setAttribute("header", "adminHeader.jsp");
                 request.getRequestDispatcher("adminHome.jsp").forward(request, response);
             }
 
             //update last_date_login
             Date date = new Date( );
             SimpleDateFormat ft = new SimpleDateFormat ("E yyyy.MM.dd 'at' hh:mm:ss a ");
-            out.println("Date hien tai: " + ft.format(date));
             String upDate = ft.format(date);
             accountDAO.updateLastDate(upDate, acc);
 

@@ -11,7 +11,7 @@
 
 <body class="skin-light">
 <!-- Header -->
-<c:import url="headerUser.jsp"/>
+<c:import url="adminHeader.jsp"/>
 <!-- Body -->
 <c:import url="sale.jsp"/>
 <c:import url="adminBody.jsp"/>

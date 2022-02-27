@@ -11,6 +11,22 @@ public class Order {
     private int productQuantity;
     private int productPrice;
     private String img;
+    private String order_date;
+
+    public Order(int orderId, String mail, String userName, String phone, String address, int productId, String productName,
+                 int productQuantity, int productPrice, String img, String order_date) {
+        this.orderId = orderId;
+        this.mail = mail;
+        this.userName = userName;
+        this.phone = phone;
+        this.address = address;
+        this.productId = productId;
+        this.productName = productName;
+        this.productQuantity = productQuantity;
+        this.productPrice = productPrice;
+        this.img = img;
+        this.order_date = order_date;
+    }
 
     public Order(int orderId, String mail, String userName, String phone, String address, int productId, String productName,
                  int productQuantity, int productPrice, String img) {
@@ -24,6 +40,15 @@ public class Order {
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
         this.img = img;
+    }
+
+
+    public String getOrder_date() {
+        return order_date;
+    }
+
+    public void setOrder_date(String order_date) {
+        this.order_date = order_date;
     }
 
     public String getImg() {

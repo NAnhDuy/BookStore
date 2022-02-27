@@ -23,7 +23,41 @@
                 </a>
                     <div class="card-body text-center">
                         <h4 class="card-title"><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}">${i.name}</a></h4>
-                        <p class="text-muted"><strike>${i.price}đ</strike> - ${i.price_sale}đ</p>
+                        <p class="text-muted">
+<%--                        <p class="text-muted"><strike>${i.price}đ</strike> - ${i.price_sale}đ</p>--%>
+                        <c:set var = "salaryy" scope = "session" value = "${String.valueOf(i.price)}"/>
+                        <c:set var = "salary" scope = "session" value = "${String.valueOf(i.price_sale)}"/>
+
+                            <%--  if sale  --%>
+                            <c:choose>
+                                <%-- 1.000 --%>
+                                <c:when test="${salary.length() == 4}">
+                                    ${salary.substring(0,1)}.${salary.substring(1)}đ -
+                                    <strike>${salaryy.substring(0,1)}.${salaryy.substring(1)}đ</strike>
+                                </c:when>
+                                <%-- 10.000 --%>
+                                <c:when test="${salary.length() == 5}">
+                                    ${salary.substring(0,2)}.${salary.substring(2)}đ -
+                                    <strike>${salaryy.substring(0,2)}.${salaryy.substring(2)}đ</strike>
+                                </c:when>
+                                <%-- 100.000 --%>
+                                <c:when test="${salary.length() == 6}">
+                                    ${salary.substring(0,3)}.${salary.substring(3)}đ -
+                                    <strike>${salaryy.substring(0,3)}.${salaryy.substring(3)}đ</strike>
+                                </c:when>
+                                <%-- 1.000.000 --%>
+                                <c:when test="${salary.length() == 7}">
+                                    ${salary.substring(0,1)}.${salary.substring(1,3)}.${salary.substring(3)}đ -
+                                    <strike>$${salaryy.substring(0,1)}.${salaryy.substring(1,3)}.${salaryy.substring(3)}đ</strike>
+                                </c:when>
+                                <%-- 10.000.000 --%>
+                                <c:when test="${salary.length() == 8}">
+                                    ${salary.substring(0,2)}.${salary.substring(2,3)}.${salary.substring(4)}đ -
+                                    <strike>${salaryy.substring(0,2)}.${salaryy.substring(2,3)}.${salaryy.substring(4)}đ</strike>
+                                </c:when>
+                            </c:choose>
+                        </p>
+
                         <a class="btn btn-outline-primary btn-sm" href="CartController.html?id=${i.id}&action=add&number=1" data-abc="true">
                             Thêm vào giỏ hàng</a>
                     </div>

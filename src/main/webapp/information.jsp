@@ -61,8 +61,73 @@
                             </div>
                             <span>0 Reviews</span>
                         </div>
-                        <div class="product-price-discount"><span>${product.price}đ</span><span class="line-through">
-                            ${product.price_sale}đ</span></div>
+<%--                        <div class="product-price-discount"><span>${product.price}đ</span><span class="line-through">--%>
+<%--                            ${product.price_sale}đ</span></div--%>
+
+                        <div class="product-price-discount">
+
+                                            <c:set var = "salaryy" scope = "session" value = "${String.valueOf(product.price)}"/>
+                                            <c:set var = "salaryyInt" scope = "session" value = "${product.price}"/>
+                                            <c:set var = "salary" scope = "session" value = "${String.valueOf(product.price_sale)}"/>
+                                            <c:set var = "salaryInt" scope = "session" value = "${product.price_salee}"/>
+
+                                            <%--  if sale  --%>
+                                            <c:if test = "${salaryInt < salaryyInt}">
+                                                <c:choose>
+                                                    <%-- 1.000 --%>
+                                                    <c:when test="${salary.length() == 4}">
+                                                        <span>${salary.substring(0,1)}.${salary.substring(1)}đ</span>
+                                                        <span class="line-through">${salaryy.substring(0,1)}.${salaryy.substring(1)}đ</strike></span>
+                                                    </c:when>
+                                                    <%-- 10.000 --%>
+                                                    <c:when test="${salary.length() == 5}">
+                                                        <span>${salary.substring(0,2)}.${salary.substring(2)}đ</span>
+                                                        <span class="line-through">${salaryy.substring(0,2)}.${salaryy.substring(2)}đ</span>
+                                                    </c:when>
+                                                    <%-- 100.000 --%>
+                                                    <c:when test="${salary.length() == 6}">
+                                                        <span>${salary.substring(0,3)}.${salary.substring(3)}đ</span>
+                                                        <span class="line-through">${salaryy.substring(0,3)}.${salaryy.substring(3)}đ</span>
+                                                    </c:when>
+                                                    <%-- 1.000.000 --%>
+                                                    <c:when test="${salary.length() == 7}">
+                                                        <span>${salary.substring(0,1)}.${salary.substring(1,3)}.${salary.substring(3)}đ</span>
+                                                        <span class="line-through">$${salaryy.substring(0,1)}.${salaryy.substring(1,3)}.${salaryy.substring(3)}đ</span>
+                                                    </c:when>
+                                                    <%-- 10.000.000 --%>
+                                                    <c:when test="${salary.length() == 8}">
+                                                        <span>${salary.substring(0,2)}.${salary.substring(2,3)}.${salary.substring(4)}đ</span>
+                                                        <span class="line-through">${salaryy.substring(0,2)}.${salaryy.substring(2,3)}.${salaryy.substring(4)}đ</span>
+                                                    </c:when>
+                                                </c:choose>
+                                            </c:if>
+
+                                            <%--  if don't sale  --%>
+                                            <c:if test = "${salaryInt == salaryyInt}">
+                                                <c:choose>
+                                                    <%-- 1.000 --%>
+                                                    <c:when test="${salary.length() == 4}">
+                                                        ${salary.substring(0,1)}.${salary.substring(1)}đ
+                                                    </c:when>
+                                                    <%-- 10.000 --%>
+                                                    <c:when test="${salary.length() == 5}">
+                                                        ${salary.substring(0,2)}.${salary.substring(2)}đ
+                                                    </c:when>
+                                                    <%-- 100.000 --%>
+                                                    <c:when test="${salary.length() == 6}">
+                                                        ${salary.substring(0,3)}.${salary.substring(3)}đ
+                                                    </c:when>
+                                                    <%-- 1.000.000 --%>
+                                                    <c:when test="${salary.length() == 7}">
+                                                        ${salary.substring(0,1)}.${salary.substring(1,3)}.${salary.substring(3)}đ
+                                                    </c:when>
+                                                    <%-- 10.000.000 --%>
+                                                    <c:when test="${salary.length() == 8}">
+                                                        ${salary.substring(0,2)}.${salary.substring(2,3)}.${salary.substring(4)}đ
+                                                    </c:when>
+                                                </c:choose>
+                                            </c:if>
+                                        </div>
                     </div>
                     <p><b>Tác giả: </b>${product.author}</p>
                     <div class="row">

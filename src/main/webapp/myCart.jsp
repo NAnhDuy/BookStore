@@ -71,7 +71,34 @@
                         <h5 class="text-grey mt-1 ml-2">${i.productQuantity}</h5><i class="fa fa-mail-reply"></i><i class="fa fa-mail-reply"></i>
                     </div>
                     <div>
-                        <h5 class="mt-1 ml-5 text-grey">${i.productPrice * i.productQuantity}đ</h5>
+<%--                        <h5 class="mt-1 ml-5 text-grey">${i.productPrice * i.productQuantity}đ</h5>--%>
+
+                        <c:set var = "salary" scope = "session" value = "${String.valueOf(i.productPrice * i.productQuantity)}"/>
+                        <c:choose>
+
+                            <%-- 1.000 --%>
+                            <c:when test="${salary.length() == 4}">
+                                <h5 class="mt-1 ml-5 text-grey">${salary.substring(0,1)}.${salary.substring(1)}đ</h5>
+                            </c:when>
+                            <%-- 10.000 --%>
+                            <c:when test="${salary.length() == 5}">
+                                <h5 class="mt-1 ml-5 text-grey">${salary.substring(0,2)}.${salary.substring(2)}đ</h5>
+                            </c:when>
+                            <%-- 100.000 --%>
+                            <c:when test="${salary.length() == 6}">
+                                <h5 class="mt-1 ml-5 text-grey">${salary.substring(0,3)}.${salary.substring(3)}đ</h5>
+                            </c:when>
+                            <%-- 1.000.000 --%>
+                            <c:when test="${salary.length() == 7}">
+                                <h5 class="mt-1 ml-5 text-grey">${salary.substring(0,1)}.${salary.substring(1,3)}.${salary.substring(3)}đ</h5>
+                            </c:when>
+                            <%-- 10.000.000 --%>
+                            <c:when test="${salary.length() == 8}">
+                                <h5 class="mt-1 ml-5 text-grey">${salary.substring(0,2)}.${salary.substring(2,3)}.${salary.substring(4)}đ</h5>
+                            </c:when>
+
+                        </c:choose>
+
                     </div>
                     <div class="d-flex align-items-center"><a href="CartController.html?id=${i.productId}&action=delete&number=${i.productQuantity}">
                         <i class="fa fa-android"></i></a></div>

@@ -30,7 +30,7 @@
         <div class="container-fluid">
 
             <!-- Brand -->
-            <a class="navbar-brand" href="homeUser.jsp">
+            <a class="navbar-brand" href="adminHome.jsp">
                 <i class="fas fa-book-open fa-3x" alt="mdb logo"></i>
             </a>
 
@@ -68,7 +68,7 @@
                         <a href="user.jsp" class="nav-link waves-effect"><i class="fa fa-user"></i>&nbsp;</a>
                     </li>
                     <li class="nav-item">
-                        <a href="LogoutController.html?add=logout" type="button"
+                        <a href="AdminOrderController.html" type="button"
                            class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light">Xem đơn hàng</a>
                     </li>
                     <li class="nav-item pl-2 mb-2 mb-md-0">

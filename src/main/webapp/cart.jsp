@@ -73,6 +73,36 @@
                 </div>
                 <div class="d-flex flex-row">
                     <h5 class="mb-3 text-grey">${i.price_sale * i.number}đ</h5>
+
+                    <c:set var = "salary" scope = "session" value = "${String.valueOf(i.price_sale * i.number)}"/>
+                    <c:choose>
+
+                        <%-- 1.000 --%>
+                        <c:when test="${salary.length() == 4}">
+                            ${salary.substring(0,1)}.${salary.substring(1)}đ
+                        </c:when>
+                        <%-- 10.000 --%>
+                        <c:when test="${salary.length() == 5}">
+                            ${salary.substring(0,2)}.${salary.substring(2)}đ
+                        </c:when>
+                        <%-- 100.000 --%>
+                        <c:when test="${salary.length() == 6}">
+                            ${salary.substring(0,3)}.${salary.substring(3)}đ
+                        </c:when>
+                        <%-- 1.000.000 --%>
+                        <c:when test="${salary.length() == 7}">
+                            ${salary.substring(0,1)}.${salary.substring(1,3)}.${salary.substring(3)}đ
+                        </c:when>
+                        <%-- 10.000.000 --%>
+                        <c:when test="${salary.length() == 8}">
+                            ${salary.substring(0,2)}.${salary.substring(2,3)}.${salary.substring(4)}đ
+                        </c:when>
+                        <c:otherwise>
+                            No comment sir...
+                        </c:otherwise>
+
+                    </c:choose>
+
                 </div>
                 <div class="d-flex flex-row align-items-center"><a href="CartController.html?id=${i.id}&action=delete&number=${i.number}">
                     <i class="fa fa-trash mb-3 text-danger"></i></a></div>

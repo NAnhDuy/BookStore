@@ -10,6 +10,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet(name = "PayController", value = "/PayController.html")
@@ -31,7 +33,11 @@ public class PayController extends HttpServlet {
             String address = request.getParameter("address");
             List<Product> list = (List<Product>) session.getAttribute("cart");
             Account acc = (Account) session.getAttribute("user");
-            dao.insertOrder(list, acc, name, address);
+            //update order_day
+            Date date = new Date( );
+            SimpleDateFormat ft = new SimpleDateFormat ("E yyyy.MM.dd 'at' hh:mm:ss a ");
+            String upDate = ft.format(date);
+            dao.insertOrder(list, acc, name, address, upDate);
 
             //delete product from session cart
             ListProductDAO listProductDAO = new ListProductDAO();

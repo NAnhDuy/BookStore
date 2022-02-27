@@ -57,12 +57,12 @@
                         <h5>Thể loại sách</h5>
 
                         <div class="text-muted small text-uppercase mb-5">
-                            <p class="mb-3"><a href="BookCategoryController?cate=child&index=1" class="card-link-secondary">Thiếu Nhi</a></p>
-                            <p class="mb-3"><a href="BookCategoryController?cate=manga&index=1" class="card-link-secondary">Manga - Light novel</a></p>
-                            <p class="mb-3"><a href="BookCategoryController?cate=kinhte&index=1" class="card-link-secondary">Kinh Tế</a></p>
-                            <p class="mb-3"><a href="BookCategoryController?cate=vanhoc&index=1" class="card-link-secondary">Văn Học</a></p>
-                            <p class="mb-3"><a href="BookCategoryController?cate=khoahoc&index=1" class="card-link-secondary">Khoa Học Kỹ Thuật</a></p>
-                            <p class="mb-3"><a href="BookCategoryController?cate=nuconggiachanh&index=1" class="card-link-secondary">Nữ Công Gia Chánh</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=child&index=1" class="card-link-secondary">Thiếu Nhi</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=manga&index=1" class="card-link-secondary">Manga - Light novel</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=kinhte&index=1" class="card-link-secondary">Kinh Tế</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=vanhoc&index=1" class="card-link-secondary">Văn Học</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=khoahoc&index=1" class="card-link-secondary">Khoa Học Kỹ Thuật</a></p>
+                            <p class="mb-3"><a href="BookCategoryController.html?cate=nuconggiachanh&index=1" class="card-link-secondary">Nữ Công Gia Chánh</a></p>
                         </div>
 
                     </section>
@@ -169,7 +169,70 @@
                                     <div class="text-center pt-4">
 
                                         <h5><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}">${i.name}</a></h5>
-                                        <p><span class="mr-1"><strong>${i.price}đ - <strike>${i.price_sale}đ</strike></strong></span></p>
+                                        <p><span class="mr-1"><strong>
+
+                                            <c:set var = "salaryy" scope = "session" value = "${String.valueOf(i.price)}"/>
+                                            <c:set var = "salaryyInt" scope = "session" value = "${i.price}"/>
+                                            <c:set var = "salary" scope = "session" value = "${String.valueOf(i.price_sale)}"/>
+                                            <c:set var = "salaryInt" scope = "session" value = "${i.price_sale}"/>
+
+                                            <%--  if sale  --%>
+                                            <c:if test = "${salaryInt < salaryyInt}">
+                                                <c:choose>
+                                                    <%-- 1.000 --%>
+                                                    <c:when test="${salary.length() == 4}">
+                                                        ${salary.substring(0,1)}.${salary.substring(1)}đ -
+                                                        <strike>${salaryy.substring(0,1)}.${salaryy.substring(1)}đ</strike>
+                                                    </c:when>
+                                                    <%-- 10.000 --%>
+                                                    <c:when test="${salary.length() == 5}">
+                                                        ${salary.substring(0,2)}.${salary.substring(2)}đ -
+                                                        <strike>${salaryy.substring(0,2)}.${salaryy.substring(2)}đ</strike>
+                                                    </c:when>
+                                                    <%-- 100.000 --%>
+                                                    <c:when test="${salary.length() == 6}">
+                                                        ${salary.substring(0,3)}.${salary.substring(3)}đ -
+                                                        <strike>${salaryy.substring(0,3)}.${salaryy.substring(3)}đ</strike>
+                                                    </c:when>
+                                                    <%-- 1.000.000 --%>
+                                                    <c:when test="${salary.length() == 7}">
+                                                        ${salary.substring(0,1)}.${salary.substring(1,3)}.${salary.substring(3)}đ -
+                                                        <strike>$${salaryy.substring(0,1)}.${salaryy.substring(1,3)}.${salaryy.substring(3)}đ</strike>
+                                                    </c:when>
+                                                    <%-- 10.000.000 --%>
+                                                    <c:when test="${salary.length() == 8}">
+                                                        ${salary.substring(0,2)}.${salary.substring(2,3)}.${salary.substring(4)}đ -
+                                                        <strike>${salaryy.substring(0,2)}.${salaryy.substring(2,3)}.${salaryy.substring(4)}đ</strike>
+                                                    </c:when>
+                                                </c:choose>
+                                            </c:if>
+
+                                            <%--  if don't sale  --%>
+                                            <c:if test = "${salaryInt == salaryyInt}">
+                                                <c:choose>
+                                                    <%-- 1.000 --%>
+                                                    <c:when test="${salary.length() == 4}">
+                                                        ${salary.substring(0,1)}.${salary.substring(1)}đ
+                                                    </c:when>
+                                                    <%-- 10.000 --%>
+                                                    <c:when test="${salary.length() == 5}">
+                                                        ${salary.substring(0,2)}.${salary.substring(2)}đ
+                                                    </c:when>
+                                                    <%-- 100.000 --%>
+                                                    <c:when test="${salary.length() == 6}">
+                                                        ${salary.substring(0,3)}.${salary.substring(3)}đ
+                                                    </c:when>
+                                                    <%-- 1.000.000 --%>
+                                                    <c:when test="${salary.length() == 7}">
+                                                        ${salary.substring(0,1)}.${salary.substring(1,3)}.${salary.substring(3)}đ
+                                                    </c:when>
+                                                    <%-- 10.000.000 --%>
+                                                    <c:when test="${salary.length() == 8}">
+                                                        ${salary.substring(0,2)}.${salary.substring(2,3)}.${salary.substring(4)}đ
+                                                    </c:when>
+                                                </c:choose>
+                                            </c:if>
+                                        </strong></span></p>
 
                                     </div>
 
