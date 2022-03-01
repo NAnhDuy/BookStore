@@ -1,5 +1,6 @@
-package controllers.page;
+package controllers.products;
 
+import context.DBContext;
 import dao.ListProductDAO;
 import model.Product;
 
@@ -9,35 +10,19 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "SearchSupplierController", value = "/SearchSupplierController.html")
-public class SearchSupplierController extends HttpServlet {
+@WebServlet(name = "SearchNameController", value = "/SearchNameController.html")
+public class SearchNameController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(true);
 
         try {
-            String supplier = request.getParameter("supplier");
-            int supp = 0;
-            switch (supplier) {
-                case "kimdong" : supp = 9;
-                break;
-                case "tre" : supp = 11;
-                break;
-                case "alpha" : supp = 2;
-                break;
-                case "tanviet" : supp = 14;
-                break;
-                case "dinhti" : supp = 16;
-                break;
-                case "nhanam" : supp = 8;
-                break;
-            }
-
+            String search = request.getParameter("search");
             int index = Integer.parseInt(request.getParameter("index"));
             ListProductDAO listProductDAO = new ListProductDAO();
-            List<Product> ls = listProductDAO.searchSupplier(supp, index);
-            int count = listProductDAO.countSupplier(supp);
+            List<Product> ls = listProductDAO.searchName(search, index);
+            int count = listProductDAO.countName(search);
             int size = 9;
             int endPage = count/size;
             if (count % size != 0) {
@@ -46,19 +31,20 @@ public class SearchSupplierController extends HttpServlet {
 
             if(session.getAttribute("user") != null) {
                 session.setAttribute("header", "headerUser.jsp");
-                request.setAttribute("listSupplier", ls);
+                request.setAttribute("listName", ls);
                 request.setAttribute("endPage", endPage);
-                request.setAttribute("supplier", supplier);
-                request.getRequestDispatcher("searchBySupplier.jsp").forward(request, response);
+                request.setAttribute("search", search);
+                request.getRequestDispatcher("searchByName.jsp").forward(request, response);
             }
             session.setAttribute("header", "header.jsp");
-            request.setAttribute("listSupplier", ls);
+            request.setAttribute("listName", ls);
             request.setAttribute("endPage", endPage);
-            request.setAttribute("supplier", supplier);
-            request.getRequestDispatcher("searchBySupplier.jsp").forward(request, response);
+            request.setAttribute("search", search);
+            request.getRequestDispatcher("searchByName.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @Override

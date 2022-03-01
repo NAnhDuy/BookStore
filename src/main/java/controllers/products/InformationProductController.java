@@ -1,4 +1,4 @@
-package controllers.page;
+package controllers.products;
 
 import dao.ListProductDAO;
 import model.Product;

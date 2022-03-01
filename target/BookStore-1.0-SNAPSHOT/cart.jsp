@@ -30,49 +30,62 @@
                     <span class="mr-1"></span><span class="mr-1 font-weight-bold"></span>
                 </div>
             </div>
-            <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                <div class="d-flex flex-column align-items-center product-details">
+            <div class="d-flex flex-row justify-content-between p-2 bg-white mt-4 px-3 rounded">
+                <div class="col-6 d-flex flex-column align-items-left product-details">
                     <span class="font-weight-bold"><h5>Sản Phẩm</h5></span>
                 </div>
-                <div class="mr-1"></div>
-                <div class="d-flex flex-column align-items-center product-details">
-                    <span class="font-weight-bold"><h5></h5></span>
+                <div class="col-2 d-flex flex-row  qty ml-4">
+                    <span class="font-weight-bold"><h5>Số lượng</h5></span>
                 </div>
-                <div class="d-flex flex-column align-items-center product-details">
-                    <span class="font-weight-bold"><h5></h5></span>
+                <div class="col-4 d-flex flex-row qty ml-4">
+                    <span class="font-weight-bold"><h5>Thành tiền</h5></span>
                 </div>
-                <div class="d-flex flex-column align-items-center product-details">
-                    <span class="font-weight-bold"><h5></h5></span>
-                </div>
-                <div class="d-flex flex-column align-items-center product-details">
-                    <span class="font-weight-bold"><h5></h5></span>
-                </div>
-                <div class="d-flex flex-row align-items-center qty">
-                    <h5 class="font-weight-bold"></h5>
-                </div>
-                <div class="d-flex flex-row align-items-center qty">
-                    <h5 class="font-weight-bold">Số Lượng</h5>
-                </div>
-                <div>
-                    <h5 class="font-weight-bold">Thành tiền</h5>
-                </div>
-                <div class="d-flex align-items-center"></div>
             </div>
 
            <%-- product DAO --%>
             <c:forEach items="${sessionScope.cart}" var="i">
             <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                <div class="mr-1"><img class="rounded" src="${i.img}" width="70"></div>
-                <div class="col-4 d-flex flex-column align-items-center product-details">
+                <div class="col-1 mr-1"><img class="rounded" src="${i.img}" width="70"></div>
+                <div class="col-4 d-flex flex-column product-details">
                     <span class="font-weight-bold">${i.name}</span>
 
                 </div>
-                <div class="col-1">
-                    <h5 class="text-grey"><i class="fa fa-android"></i>${i.number}</h5>
-                    <i class="fa fa-mail-reply"></i><i class="fa fa-mail-reply"></i>
+                <div class="col-1 mb-3">
+                    <h5 class="text-grey text-center"><i class="fa fa-android"></i>${i.number}</h5>
+<%--                    <i class="fa fa-mail-reply"></i><i class="fa fa-mail-reply"></i>--%>
                 </div>
                 <div class="d-flex flex-row">
-                    <h5 class="mb-3 text-grey">${i.price_sale * i.number}đ</h5>
+                    <h5 class="text-grey text-right">
+
+                    <c:set var = "salary" scope = "session" value = "${String.valueOf(i.price_sale * i.number)}"/>
+                    <c:choose>
+
+                        <%-- 1.000 --%>
+                        <c:when test="${salary.length() == 4}">
+                            ${salary.substring(0,1)}.${salary.substring(1)}đ
+                        </c:when>
+                        <%-- 10.000 --%>
+                        <c:when test="${salary.length() == 5}">
+                            ${salary.substring(0,2)}.${salary.substring(2)}đ
+                        </c:when>
+                        <%-- 100.000 --%>
+                        <c:when test="${salary.length() == 6}">
+                            ${salary.substring(0,3)}.${salary.substring(3)}đ
+                        </c:when>
+                        <%-- 1.000.000 --%>
+                        <c:when test="${salary.length() == 7}">
+                            ${salary.substring(0,1)}.${salary.substring(1,4)}.${salary.substring(4)}đ
+                        </c:when>
+                        <%-- 10.000.000 --%>
+                        <c:when test="${salary.length() == 8}">
+                            ${salary.substring(0,2)}.${salary.substring(2,5)}.${salary.substring(5)}đ
+                        </c:when>
+                        <c:otherwise>
+                            No comment sir...
+                        </c:otherwise>
+
+                    </c:choose>
+                    </h5>
                 </div>
                 <div class="d-flex flex-row align-items-center"><a href="CartController.html?id=${i.id}&action=delete&number=${i.number}">
                     <i class="fa fa-trash mb-3 text-danger"></i></a></div>

@@ -195,13 +195,13 @@
                                                     </c:when>
                                                     <%-- 1.000.000 --%>
                                                     <c:when test="${salary.length() == 7}">
-                                                        ${salary.substring(0,1)}.${salary.substring(1,3)}.${salary.substring(3)}đ -
-                                                        <strike>$${salaryy.substring(0,1)}.${salaryy.substring(1,3)}.${salaryy.substring(3)}đ</strike>
+                                                        ${salary.substring(0,1)}.${salary.substring(1,4)}.${salary.substring(4)}đ -
+                                                        <strike>$${salaryy.substring(0,1)}.${salaryy.substring(1,4)}.${salaryy.substring(4)}đ</strike>
                                                     </c:when>
                                                     <%-- 10.000.000 --%>
                                                     <c:when test="${salary.length() == 8}">
-                                                        ${salary.substring(0,2)}.${salary.substring(2,3)}.${salary.substring(4)}đ -
-                                                        <strike>${salaryy.substring(0,2)}.${salaryy.substring(2,3)}.${salaryy.substring(4)}đ</strike>
+                                                        ${salary.substring(0,2)}.${salary.substring(2,5)}.${salary.substring(5)}đ -
+                                                        <strike>${salaryy.substring(0,2)}.${salaryy.substring(2,5)}.${salaryy.substring(5)}đ</strike>
                                                     </c:when>
                                                 </c:choose>
                                             </c:if>
@@ -223,11 +223,11 @@
                                                     </c:when>
                                                     <%-- 1.000.000 --%>
                                                     <c:when test="${salary.length() == 7}">
-                                                        ${salary.substring(0,1)}.${salary.substring(1,3)}.${salary.substring(3)}đ
+                                                        ${salary.substring(0,1)}.${salary.substring(1,4)}.${salary.substring(4)}đ
                                                     </c:when>
                                                     <%-- 10.000.000 --%>
                                                     <c:when test="${salary.length() == 8}">
-                                                        ${salary.substring(0,2)}.${salary.substring(2,3)}.${salary.substring(4)}đ
+                                                        ${salary.substring(0,2)}.${salary.substring(2,5)}.${salary.substring(5)}đ
                                                     </c:when>
                                                 </c:choose>
                                             </c:if>

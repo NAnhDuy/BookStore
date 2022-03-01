@@ -14,7 +14,7 @@
     <%--    <link rel="stylesheet" href="css/cart.css">--%>
 </head>
 <body>
-<%--<c:import url="${sessionScope.header}" />--%>
+<c:import url="${sessionScope.header}" />
 
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-left row">
@@ -50,25 +50,6 @@
                 <div class="col-2 sm-6">
                     <span class="font-weight-bold"><h5>Ngày mua hàng</h5></span>
                 </div>
-<%--                <div class="d-flex flex-column align-items-center product-details">--%>
-<%--                    <span class="font-weight-bold"><h5></h5></span>--%>
-<%--                </div>--%>
-<%--                <div class="d-flex flex-column align-items-center product-details">--%>
-<%--                    <span class="font-weight-bold"><h5></h5></span>--%>
-<%--                </div>--%>
-<%--                <div class="d-flex flex-column align-items-center product-details">--%>
-<%--                    <span class="font-weight-bold"><h5></h5></span>--%>
-<%--                </div>--%>
-<%--                <div class="d-flex flex-row align-items-center qty">--%>
-<%--                    <h5 class="font-weight-bold"></h5>--%>
-<%--                </div>--%>
-<%--                <div class="d-flex flex-row align-items-center qty">--%>
-<%--                    <h5 class="font-weight-bold">Số Lượng</h5>--%>
-<%--                </div>--%>
-<%--                <div>--%>
-<%--                    <h5 class="font-weight-bold">Thành tiền</h5>--%>
-<%--                </div>--%>
-<%--                <div class="d-flex align-items-center"></div>--%>
             </div>
 
             <%-- product DAO --%>
@@ -105,11 +86,11 @@
                                 </c:when>
                                 <%-- 1.000.000 --%>
                                 <c:when test="${salary.length() == 7}">
-                                    ${salary.substring(0,1)}.${salary.substring(1,3)}.${salary.substring(3)}đ
+                                    ${salary.substring(0,1)}.${salary.substring(1,4)}.${salary.substring(4)}đ
                                 </c:when>
                                 <%-- 10.000.000 --%>
                                 <c:when test="${salary.length() == 8}">
-                                    ${salary.substring(0,2)}.${salary.substring(2,3)}.${salary.substring(4)}đ
+                                    ${salary.substring(0,2)}.${salary.substring(2,5)}.${salary.substring(5)}đ
                                 </c:when>
 
                             </c:choose>

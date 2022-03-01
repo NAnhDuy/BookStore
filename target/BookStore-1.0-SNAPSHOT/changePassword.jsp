@@ -38,9 +38,9 @@
                 <div class="form-group">
                   <h5 style="color: #ee2200">${error}</h5>
                   <h5 style="color: #1c7430">${mess}</h5>
-                  <input type="text" name="pass" class="form-control mb-2" placeholder="Mật khẩu hiện tại">
-                  <input type="text" name="newPass1" class="form-control mb-2" placeholder="Mật khẩu mới">
-                  <input type="text" name="newPass2" class="form-control mb-2" placeholder="Nhập lại mật khẩu mới">
+                  <input type="password" name="pass" class="form-control mb-2" placeholder="Mật khẩu hiện tại">
+                  <input type="password" name="newPass1" class="form-control mb-2" placeholder="Mật khẩu mới">
+                  <input type="password" name="newPass2" class="form-control mb-2" placeholder="Nhập lại mật khẩu mới">
                 </div>
               </div>
             </div>

@@ -60,7 +60,7 @@ public class LoginController extends HttpServlet {
             }
             //check cart
             if(session.getAttribute("checkCart") != null) {
-                session.setAttribute("header", "header.jsp");
+                session.setAttribute("header", "headerUser.jsp");
                 request.getRequestDispatcher("cart.jsp").forward(request, response);
             }
             //check number false after logout
@@ -70,22 +70,23 @@ public class LoginController extends HttpServlet {
             int numberFalse = (Integer) session.getAttribute("numberFalse");
             accountDAO.updateNumberFalse(numberFalse, acc);
 
+            //update last_date_login
+            Date date = new Date( );
+            SimpleDateFormat ft = new SimpleDateFormat ("E yyyy.MM.dd 'at' hh:mm:ss a ");
+            String upDate = ft.format(date);
+            accountDAO.updateLastDate(upDate, acc);
             //check admin
             if(acc.getDecentralization_id() == 1) {
                 session.setAttribute("user", acc);
                 session.setAttribute("header", "adminHeader.jsp");
                 request.getRequestDispatcher("adminHome.jsp").forward(request, response);
             }
+            if(acc.getDecentralization_id() == 0) {
+                session.setAttribute("user", acc);
+                session.setAttribute("header", "headerUser.jsp");
+                request.getRequestDispatcher("homeUser.jsp").forward(request, response);
+            }
 
-            //update last_date_login
-            Date date = new Date( );
-            SimpleDateFormat ft = new SimpleDateFormat ("E yyyy.MM.dd 'at' hh:mm:ss a ");
-            String upDate = ft.format(date);
-            accountDAO.updateLastDate(upDate, acc);
-
-            session.setAttribute("user", acc);
-            session.setAttribute("header", "headerUser.jsp");
-            request.getRequestDispatcher("homeUser.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

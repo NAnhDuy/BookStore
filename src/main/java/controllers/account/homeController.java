@@ -6,6 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "homeController", value = "/homeController.html")
 public class homeController extends HttpServlet {
@@ -13,14 +14,18 @@ public class homeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
         HttpSession session = request.getSession(true);
+        PrintWriter out = response.getWriter();
 
-        Account a = (Account) session.getAttribute("user");
+        String header = (String) session.getAttribute("header");
 
-        if(a != null) {
-            request.getRequestDispatcher("homeUser.jsp").forward(request,response);
+        if (header.equals("headerUser.jsp")) {
+            request.getRequestDispatcher("homeUser.jsp").forward(request, response);
         }
-        request.getRequestDispatcher("home.jsp").forward(request,response);
+        if (header.equals("adminHeader.jsp")) {
+            request.getRequestDispatcher("adminHome.jsp").forward(request, response);
 
+
+        }
     }
 
     @Override

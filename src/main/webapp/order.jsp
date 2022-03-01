@@ -149,11 +149,11 @@
                                             </c:when>
                                             <%-- 1.000.000 --%>
                                             <c:when test="${salary.length() == 7}">
-                                                <p><b>${salary.substring(0,1)}.${salary.substring(1,3)}.${salary.substring(3)}đ</b></p>
+                                                <p><b>${salary.substring(0,1)}.${salary.substring(1,4)}.${salary.substring(4)}đ</b></p>
                                             </c:when>
                                             <%-- 10.000.000 --%>
                                             <c:when test="${salary.length() == 8}">
-                                                <p><b>${salary.substring(0,2)}.${salary.substring(2,3)}.${salary.substring(4)}đ</b></p>
+                                                <p><b>${salary.substring(0,2)}.${salary.substring(2,5)}.${salary.substring(5)}đ</b></p>
                                             </c:when>
 
                                         </c:choose>
@@ -169,7 +169,33 @@
                                                 <p class="mb-1"><b>Giá tiền sản phẩm: </b></p>
                                             </div>
                                             <div class="flex-sm-col col-auto">
-                                                <p class="mb-1"><b>${sessionScope.total}đ</b></p>
+<%--                                                <p class="mb-1"><b>${sessionScope.total}đ</b></p>--%>
+
+                                                <c:set var = "salary" scope = "session" value = "${String.valueOf(sessionScope.total)}"/>
+                                                <c:choose>
+
+                                                    <%-- 1.000 --%>
+                                                    <c:when test="${salary.length() == 4}">
+                                                        <p><b>${salary.substring(0,1)}.${salary.substring(1)}đ</b></p>
+                                                    </c:when>
+                                                    <%-- 10.000 --%>
+                                                    <c:when test="${salary.length() == 5}">
+                                                        <p><b>${salary.substring(0,2)}.${salary.substring(2)}đ</b></p>
+                                                    </c:when>
+                                                    <%-- 100.000 --%>
+                                                    <c:when test="${salary.length() == 6}">
+                                                        <p><b>${salary.substring(0,3)}.${salary.substring(3)}đ</b></p>
+                                                    </c:when>
+                                                    <%-- 1.000.000 --%>
+                                                    <c:when test="${salary.length() == 7}">
+                                                        <p><b>${salary.substring(0,1)}.${salary.substring(1,4)}.${salary.substring(4)}đ</b></p>
+                                                    </c:when>
+                                                    <%-- 10.000.000 --%>
+                                                    <c:when test="${salary.length() == 8}">
+                                                        <p><b>${salary.substring(0,2)}.${salary.substring(2,5)}.${salary.substring(5)}đ</b></p>
+                                                    </c:when>
+
+                                                </c:choose>
                                             </div>
                                         </div>
                                         <div class="row justify-content-between">
@@ -185,7 +211,33 @@
                                                 <p><b>Tổng giá tiền: </b></p>
                                             </div>
                                             <div class="flex-sm-col col-auto">
-                                                <p class="mb-1"><b>${sessionScope.total}đ</b></p>
+<%--                                                <p class="mb-1"><b>${sessionScope.total}đ</b></p>--%>
+
+                                                <c:set var = "salary" scope = "session" value = "${String.valueOf(sessionScope.total)}"/>
+                                                <c:choose>
+
+                                                    <%-- 1.000 --%>
+                                                    <c:when test="${salary.length() == 4}">
+                                                        <p><b>${salary.substring(0,1)}.${salary.substring(1)}đ</b></p>
+                                                    </c:when>
+                                                    <%-- 10.000 --%>
+                                                    <c:when test="${salary.length() == 5}">
+                                                        <p><b>${salary.substring(0,2)}.${salary.substring(2)}đ</b></p>
+                                                    </c:when>
+                                                    <%-- 100.000 --%>
+                                                    <c:when test="${salary.length() == 6}">
+                                                        <p><b>${salary.substring(0,3)}.${salary.substring(3)}đ</b></p>
+                                                    </c:when>
+                                                    <%-- 1.000.000 --%>
+                                                    <c:when test="${salary.length() == 7}">
+                                                        <p><b>${salary.substring(0,1)}.${salary.substring(1,4)}.${salary.substring(4)}đ</b></p>
+                                                    </c:when>
+                                                    <%-- 10.000.000 --%>
+                                                    <c:when test="${salary.length() == 8}">
+                                                        <p><b>${salary.substring(0,2)}.${salary.substring(2,5)}.${salary.substring(5)}đ</b></p>
+                                                    </c:when>
+
+                                                </c:choose>
                                             </div>
                                         </div>
                                         <hr class="my-0">

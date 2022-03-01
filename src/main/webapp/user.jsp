@@ -33,9 +33,9 @@
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                    <h5 class="mb-2">Tên đăng nhập :   ${sessionScope.user.name}</h5>
-                    <h5 class="mb-2">Số điện thoại :   ${sessionScope.user.phone}</h5>
-                    <h5 class="mb-2">Email đăng nhập :   ${sessionScope.user.user}</h5>
+                    <h5 class="mb-3">Tên đăng nhập :   ${sessionScope.user.name}</h5>
+                    <h5 class="mb-3">Số điện thoại :   ${sessionScope.user.phone}</h5>
+                    <h5 class="mb-3">Email đăng nhập :   ${sessionScope.user.user}</h5>
                 </div>
             </div>
         </div>

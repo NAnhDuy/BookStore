@@ -1,6 +1,7 @@
 package dao;
 
 import context.DBContext;
+import model.Account;
 import model.Product;
 
 import java.sql.Connection;
@@ -433,10 +434,61 @@ public class ListProductDAO {
         }
         return null;
     }
-
     public List<Product> removeAll(List<Product> ls) {
         ls.removeAll(ls);
         return ls;
+    }
+
+    //method insert new Product
+    public void insertNewProduct(String product_name, String product_author, int price, int price_sale, String img,
+                                 int supplier_id, int cover_form_id, int category_id) throws Exception {
+        try {
+                String query = "insert into bookstoredb.products(product_name, product_author, product_price, " +
+                        "product_price_sale, product_img_source, supplier_id, cover_form_id, category_id) \n" +
+                        "values(?,?,?,?,?,?,?,?)";
+                Connection conn = new DBContext().getConnection();
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setString(1, product_name);
+                ps.setString(2, product_author);
+                ps.setInt(3, price);
+                ps.setInt(4, price_sale);
+                ps.setString(5, img);
+                ps.setInt(6, supplier_id);
+                ps.setInt(7, cover_form_id);
+                ps.setInt(8, category_id);
+                ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //method update product by admin
+    public void updateProduct(String name, String author, int price, int price_sale, String img, int supplier,
+                              int cover_form, int category, int id) {
+        try {
+            String query = "update bookstoredb.products \n" +
+                    "set product_name = ?, product_author = ?, product_price = ?, product_price_sale = ?, product_img_source = ?, \n" +
+                    "supplier_id = ?, cover_form_id = ?, category_id = ?\n" +
+                    "where product_id = ?";
+
+            Connection conn = new DBContext().getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, name);
+            ps.setString(2, author);
+            ps.setInt(3, price);
+            ps.setInt(4, price_sale);
+            ps.setString(5, img);
+            ps.setInt(6, supplier);
+            ps.setInt(7, cover_form);
+            ps.setInt(8, category);
+            ps.setInt(9, id);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 

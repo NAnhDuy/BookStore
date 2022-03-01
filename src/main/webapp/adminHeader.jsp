@@ -30,7 +30,7 @@
         <div class="container-fluid">
 
             <!-- Brand -->
-            <a class="navbar-brand" href="adminHome.jsp">
+            <a class="navbar-brand" href="homeController.html">
                 <i class="fas fa-book-open fa-3x" alt="mdb logo"></i>
             </a>
 
