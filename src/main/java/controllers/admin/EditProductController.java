@@ -1,4 +1,4 @@
-package controllers.products;
+package controllers.admin;
 
 import dao.ListProductDAO;
 import model.Product;
@@ -15,6 +15,7 @@ public class EditProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession(true);
 
         try {
             int product_id = Integer.parseInt(request.getParameter("id"));
@@ -22,6 +23,7 @@ public class EditProductController extends HttpServlet {
 
             Product a = dao.getProduct(product_id);
             request.setAttribute("product", a);
+            session.setAttribute("header", "adminHeader.jsp");
             request.getRequestDispatcher("editProduct.jsp").forward(request,response);
 
         } catch (Exception e) {

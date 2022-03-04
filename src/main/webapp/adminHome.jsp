@@ -12,6 +12,7 @@
 <body class="skin-light">
 <!-- Header -->
 <c:import url="adminHeader.jsp"/>
+<h4 style="color:#0f6674;">${mess}</h4>
 <!-- Body -->
 <c:import url="sale.jsp"/>
 <c:import url="adminBody.jsp"/>

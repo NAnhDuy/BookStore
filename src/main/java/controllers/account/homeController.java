@@ -14,18 +14,21 @@ public class homeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
         HttpSession session = request.getSession(true);
-        PrintWriter out = response.getWriter();
+        try {
+            Account acc = (Account) session.getAttribute("user");
 
-        String header = (String) session.getAttribute("header");
+            if (acc.getDecentralization_id() == 2) {
+                request.getRequestDispatcher("homeUser.jsp").forward(request, response);
 
-        if (header.equals("headerUser.jsp")) {
-            request.getRequestDispatcher("homeUser.jsp").forward(request, response);
+            }
+            if (acc.getDecentralization_id() == 1) {
+                request.getRequestDispatcher("adminHome.jsp").forward(request, response);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (header.equals("adminHeader.jsp")) {
-            request.getRequestDispatcher("adminHome.jsp").forward(request, response);
 
-
-        }
     }
 
     @Override

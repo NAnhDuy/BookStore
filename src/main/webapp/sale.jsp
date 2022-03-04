@@ -22,7 +22,7 @@
                     </div>
                 </a>
                     <div class="card-body text-center">
-                        <h4 class="card-title"><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}">${i.name}</a></h4>
+                        <h4 class="card-title"><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}&number=0">${i.name}</a></h4>
                         <p class="text-muted">
 <%--                        <p class="text-muted"><strike>${i.price}đ</strike> - ${i.price_sale}đ</p>--%>
                         <c:set var = "salaryy" scope = "session" value = "${String.valueOf(i.price)}"/>

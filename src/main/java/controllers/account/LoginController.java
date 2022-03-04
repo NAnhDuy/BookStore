@@ -16,7 +16,6 @@ import java.util.Date;
 public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 
     @Override
@@ -49,11 +48,11 @@ public class LoginController extends HttpServlet {
                 if(session.getAttribute("numberFalse") == null) {
                     session.setAttribute("numberFalse", 0);
                 }
+
                 int numberFalse = (Integer) session.getAttribute("numberFalse");
                 numberFalse++;
                 String error = "Mật khẩu không đúng";
                 accountDAO.updateNumberFalse(numberFalse, acc);
-
                 session.setAttribute("numberFalse", numberFalse);
                 request.setAttribute("error", error);
                 request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -67,9 +66,9 @@ public class LoginController extends HttpServlet {
             if(session.getAttribute("numberFalse") == null) {
                 session.setAttribute("numberFalse", 0);
             }
+
             int numberFalse = (Integer) session.getAttribute("numberFalse");
             accountDAO.updateNumberFalse(numberFalse, acc);
-
             //update last_date_login
             Date date = new Date( );
             SimpleDateFormat ft = new SimpleDateFormat ("E yyyy.MM.dd 'at' hh:mm:ss a ");
@@ -81,7 +80,8 @@ public class LoginController extends HttpServlet {
                 session.setAttribute("header", "adminHeader.jsp");
                 request.getRequestDispatcher("adminHome.jsp").forward(request, response);
             }
-            if(acc.getDecentralization_id() == 0) {
+
+            if(acc.getDecentralization_id() == 2) {
                 session.setAttribute("user", acc);
                 session.setAttribute("header", "headerUser.jsp");
                 request.getRequestDispatcher("homeUser.jsp").forward(request, response);
@@ -91,4 +91,5 @@ public class LoginController extends HttpServlet {
             e.printStackTrace();
         }
     }
+
 }

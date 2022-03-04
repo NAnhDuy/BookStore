@@ -29,8 +29,9 @@
                         <p class="text-muted space mb-0 shop"></p>
                     </div>
                     <div class="col">
-                        <div class="row justify-content-start ">
-                            <div class="col"> <img class="irc_mi img-fluid cursor-pointer " src="https://courses.funix.edu.vn/static/public.site/images/logo.png" width="70" height="70"> </div>
+                        <div class="row justify-content-start text-left">
+                            <h5 style="color:#1c7430;">${mess}</h5>
+<%--                            <div class="col"> <img class="irc_mi img-fluid cursor-pointer " src="https://courses.funix.edu.vn/static/public.site/images/logo.png" width="70" height="70"> </div>--%>
                         </div>
                     </div>
                 </div>

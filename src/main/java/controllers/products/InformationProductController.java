@@ -1,6 +1,7 @@
 package controllers.products;
 
 import dao.ListProductDAO;
+import model.Account;
 import model.Product;
 
 import javax.servlet.*;
@@ -18,13 +19,34 @@ public class InformationProductController extends HttpServlet {
 
         try {
             int id = Integer.parseInt(request.getParameter("id"));
+            String number = request.getParameter("number");
             request.setAttribute("product", new ListProductDAO().getProduct(id));
 
-            if(session.getAttribute("user") != null) {
+            Account acc = (Account) session.getAttribute("user");
+
+            if(acc != null && acc.getDecentralization_id() == 1 && number.equals("0")) {
+                session.setAttribute("header", "adminHeader.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("information.jsp");
+                rd.forward(request,response);
+            }
+
+            if(acc != null && acc.getDecentralization_id() == 1 && number.equals("1")) {
+                session.setAttribute("header", "adminHeader.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("productDelete.jsp");
+                rd.forward(request,response);
+            }
+
+            if(acc != null && acc.getDecentralization_id() == 2 && number.equals("0")) {
                 session.setAttribute("header", "headerUser.jsp");
                 RequestDispatcher rd = request.getRequestDispatcher("information.jsp");
                 rd.forward(request,response);
             }
+            if(acc != null && acc.getDecentralization_id() == 2 && number.equals("1")) {
+                session.setAttribute("header", "headerUser.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("information.jsp");
+                rd.forward(request,response);
+            }
+
             session.setAttribute("header", "header.jsp");
             RequestDispatcher rd = request.getRequestDispatcher("information.jsp");
             rd.forward(request,response);

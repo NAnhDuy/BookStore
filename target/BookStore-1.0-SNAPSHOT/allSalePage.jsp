@@ -166,8 +166,7 @@
 
                                     <div class="text-center pt-4">
 
-                                        <h5><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}">${i.name}</a></h5>
-<%--                                        <p><span class="mr-1"><strong>${i.price}đ - <strike>${i.price_sale}đ</strike></strong></span></p>--%>
+                                        <h5><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}&number=0">${i.name}</a></h5>
                                         <p><span class="mr-1"><strong>
 
                                             <c:set var = "salaryy" scope = "session" value = "${String.valueOf(i.price)}"/>

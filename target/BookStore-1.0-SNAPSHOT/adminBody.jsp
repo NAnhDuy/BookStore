@@ -192,7 +192,7 @@
                                     </div>
 
                                     <div class="text-center pt-4">
-                                        <h5><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}">${i.name}</a></h5>
+                                        <h5><a style="color: #0b2e13" href="InformationProductController.html?id=${i.id}&number=1">${i.name}</a></h5>
 <%--                                        <p><span class="mr-1"><strong>${i.price}đ - <strike>${i.price_sale}đ</strike></strong></span></p>--%>
                                         <p><span class="mr-1"><strong>
 
@@ -263,10 +263,9 @@
                                     <div class="text-center">
 
                                         <p>
-                                            <a href="EditProductController.html?id=${i.id}" class="mr-1"><i class="fa fa-edit text-danger"></i></a>&nbsp;
-                                            <a href="#" class="mr-1"><i class="fa fa-trash text-danger"></i></a>
+                                            <a href="EditProductController.html?id=${i.id}&number=1" class="mr-1"><i class="fa fa-edit text-danger"></i></a>&nbsp;
+                                            <a href="InformationProductController.html?id=${i.id}&number=1"><i class="fa fa-trash text-danger"></i></a>
                                         </p>
-
                                     </div>
 
                                 </div>
@@ -315,34 +314,8 @@
 <br><br><br>
 <!-- SCRIPTS -->
 <!-- JQuery -->
-<script src="js/jquery-3.4.1.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="js/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="js/bootstrap.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="js/mdb.min.js"></script>
-<!-- MDB Ecommerce JavaScript -->
-<script type="text/javascript" src="js/mdb.ecommerce.min.js"></script>
-<script>
-    $('#multi').mdbRange({
-        single: {
-            active: true,
-            multi: {
-                active: true,
-                rangeLength: 1
-            },
-        }
-    });
 
-    $(document).ready(function () {
-        $('.mdb-select').materialSelect();
-        $('.select-wrapper.md-form.md-outline input.select-dropdown').bind('focus blur', function () {
-            $(this).closest('.select-outline').find('label').toggleClass('active');
-            $(this).closest('.select-outline').find('.caret').toggleClass('active');
-        });
-    });
-</script>
+
 </body>
 
 </html>

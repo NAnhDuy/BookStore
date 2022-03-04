@@ -1,6 +1,7 @@
 package controllers.cart;
 
 import dao.ListProductDAO;
+import model.Account;
 import model.Product;
 
 import javax.servlet.*;
@@ -40,8 +41,14 @@ public class CartController extends HttpServlet {
                 }
                 ls.add(p);
 
-                if(session.getAttribute("user") != null) {
+                Account acc = (Account) session.getAttribute("user");
+                if(acc != null && acc.getDecentralization_id() == 2) {
                     session.setAttribute("header", "headerUser.jsp");
+                    session.setAttribute("cart", ls);
+                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                }
+                if(acc != null && acc.getDecentralization_id() == 1) {
+                    session.setAttribute("header", "adminHeader.jsp");
                     session.setAttribute("cart", ls);
                     request.getRequestDispatcher("cart.jsp").forward(request, response);
                 }
@@ -53,9 +60,15 @@ public class CartController extends HttpServlet {
                 ListProductDAO listProductDAO = new ListProductDAO();
                 List<Product> lp = (List<Product>) session.getAttribute("cart");
                 List<Product> cart = listProductDAO.remove(id, lp);
+                Account acc = (Account) session.getAttribute("user");
 
-                if(session.getAttribute("user") != null) {
+                if(acc != null && acc.getDecentralization_id() == 2) {
                     session.setAttribute("header", "headerUser.jsp");
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                }
+                if(acc != null && acc.getDecentralization_id() == 1) {
+                    session.setAttribute("header", "adminHeader.jsp");
                     session.setAttribute("cart", cart);
                     request.getRequestDispatcher("cart.jsp").forward(request, response);
                 }

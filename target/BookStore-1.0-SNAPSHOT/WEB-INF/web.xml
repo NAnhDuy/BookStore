@@ -82,14 +82,22 @@
     </servlet>
     <servlet>
         <servlet-name>EditProductController</servlet-name>
-        <servlet-class>controllers.products.EditProductController</servlet-class>
+        <servlet-class>controllers.admin.EditProductController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditUpdateController</servlet-name>
-        <servlet-class>controllers.products.EditUpdateController</servlet-class>
+        <servlet-class>controllers.admin.EditUpdateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductDeleteController</servlet-name>
+        <servlet-class>controllers.admin.ProductDeleteController</servlet-class>
     </servlet>
 
 
+    <servlet-mapping>
+        <servlet-name>ProductDeleteController</servlet-name>
+        <url-pattern>/ProductDeleteController.html</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EditUpdateController</servlet-name>
         <url-pattern>/EditUpdateController.html</url-pattern>

@@ -488,7 +488,22 @@ public class ListProductDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    //method product
+    public void deleteProduct(int id) {
+        try {
+            String query = "delete from bookstoredb.products \n" +
+                    "where product_id = ?";
+
+            Connection conn = new DBContext().getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
